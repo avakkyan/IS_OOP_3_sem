@@ -14,12 +14,11 @@ public class Environment
         new(EnvironmentType.NitrideParticles, typeof(CosmoWhale)),
         new(EnvironmentType.HighDensity, typeof(Flash)),
     };
-    private List<IObstacle> _obstacles;
+    private List<IObstacle> _obstacles = new List<IObstacle>();
 
     public Environment(EnvironmentType type)
     {
         Type = type;
-        _obstacles = new List<IObstacle>();
     }
 
     public Environment(EnvironmentType type, IReadOnlyCollection<IObstacle> obstacles)
@@ -29,7 +28,6 @@ public class Environment
             throw new ArgumentException("Obstacles is null");
         }
 
-        _obstacles = new List<IObstacle>();
         foreach (IObstacle obstacle in obstacles)
         {
             AddObstacle(obstacle);
@@ -38,7 +36,7 @@ public class Environment
         Type = type;
     }
 
-    public EnvironmentType Type { get; set; }
+    public EnvironmentType Type { get; }
     public IReadOnlyCollection<IObstacle> Obstacles => _obstacles.AsReadOnly();
 
     public IObstacle AddObstacle(IObstacle obstacle)

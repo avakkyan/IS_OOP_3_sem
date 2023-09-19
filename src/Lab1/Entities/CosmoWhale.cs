@@ -4,7 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Entities;
 
 public class CosmoWhale : IObstacle
 {
-    private const int CosmoWhaleDamage = 1000;
+    private const int CosmoWhaleDamage = 400;
     public CosmoWhale()
     {
         Damage = CosmoWhaleDamage;
