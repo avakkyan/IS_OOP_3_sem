@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab1.Entities;
+using Itmo.ObjectOrientedProgramming.Lab1.Entities.ShipParts;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
@@ -23,14 +24,39 @@ public class Ship
 
     public IReadOnlyCollection<Engine> Engines => _engines.AsReadOnly();
     public IReadOnlyCollection<Fuel> Fuels => _fuels.AsReadOnly();
-    public Deflector? Deflector { get; init; }
-    public Body? Body { get; set; }
+    public Deflector? Deflector { get; protected set; }
+    public Body? Body { get; protected set; }
     public double Money { get; }
-    public double WeightSizeCoefficient { get; set; }
-    public bool HasAntiNitrineEmitter { get; init; }
+    public double WeightSizeCoefficient { get; protected set; }
+    public bool HasAntiNitrineEmitter { get; protected set; }
+    public bool IsCrewAlive { get; private set; }
     protected static double WeightSizeSmall => Small;
     protected static double WeightSizeMiddle => Middle;
     protected static double WeightSizeBig => Big;
+    public bool HasPulseEngine()
+    {
+        return _engines.Exists(x => x.Type == EngineType.Pulse);
+    }
+
+    public bool HasJumpEngine()
+    {
+        return _engines.Exists(x => x.Type == EngineType.Jump);
+    }
+
+    public bool HasPulseEngineClassE()
+    {
+        return HasPulseEngine() && _engines.Exists(x => x.Class == EngineClass.E);
+    }
+
+    public void DestroyDeflector()
+    {
+        Deflector = null;
+    }
+
+    public void KillCrew()
+    {
+        IsCrewAlive = false;
+    }
 
     protected void AddEngine(Engine engine)
     {

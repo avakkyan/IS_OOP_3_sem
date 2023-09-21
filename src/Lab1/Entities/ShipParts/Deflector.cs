@@ -1,13 +1,13 @@
 ﻿using System;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-namespace Itmo.ObjectOrientedProgramming.Lab1.Entities;
+namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.ShipParts;
 
 public class Deflector
 {
-    private const int HitPoints1 = 10;
-    private const int HitPoints2 = 50;
-    private const int HitPoints3 = 200;
+    private const double HitPoints1 = 10;
+    private const double HitPoints2 = 50;
+    private const double HitPoints3 = 200;
     public Deflector(DeflectorClass deflectorClass)
     {
         HitPoints = deflectorClass switch
@@ -19,11 +19,16 @@ public class Deflector
         };
     }
 
-    public int HitPoints { get; set; }
+    public double HitPoints { get; private set; }
     public PhotonDeflector? PhotonDeflector { get; private set; }
 
     public void AddPhotonDeflector()
     {
         PhotonDeflector = new PhotonDeflector();
+    }
+
+    public void TakeDamage(double damage)
+    {
+        HitPoints -= damage;
     }
 }

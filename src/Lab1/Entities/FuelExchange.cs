@@ -2,13 +2,21 @@
 
 public sealed class FuelExchange
 {
-    private static FuelExchange? _fuelExchange;
+    private const double Plasma = 10;
+    private const double Graviton = 15;
+
+    // private static FuelExchange? _fuelExchange;
     private FuelExchange()
     {
+        PlasmaCost = Plasma;
+        GravitonCost = Graviton;
     }
 
-    public static FuelExchange GetFuelExchange()
-    {
-        return _fuelExchange ??= new FuelExchange();
-    }
+    public double PlasmaCost { get; set; }
+    public double GravitonCost { get; set; }
+
+    // public static FuelExchange GetFuelExchange()
+    // {
+    //     return _fuelExchange ??= new FuelExchange();
+    // }
 }

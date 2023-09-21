@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-namespace Itmo.ObjectOrientedProgramming.Lab1.Entities;
+namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Engines;
 
 public class PulseEngine : Engine
 {
@@ -27,13 +27,24 @@ public class PulseEngine : Engine
         };
     }
 
-    public double CalculateFuelAmount(double distance)
+    public override double CalculateFuelAmount(double distance)
     {
+        double time = CalculateTime(distance);
         return Class switch
         {
-            EngineClass.C => StartUpAmount + (distance / Speed * FuelConsumption),
-            EngineClass.E => StartUpAmount + (Math.Log((distance / Speed) + 1) * FuelConsumption),
+            EngineClass.C => StartUpAmount + (time * FuelConsumption),
+            EngineClass.E => StartUpAmount + (Math.Log(time + 1) * FuelConsumption),
             _ => throw new ArgumentException("Invalid Class"),
         };
+    }
+
+    public override double CalculateFuelAmount(Section section)
+    {
+        if (section is null)
+        {
+            throw new ArgumentException("Section is null");
+        }
+
+        return CalculateFuelAmount(section.Distance);
     }
 }

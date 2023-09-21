@@ -1,6 +1,8 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab1.Models;
+﻿using Itmo.ObjectOrientedProgramming.Lab1.Entities.Engines;
+using Itmo.ObjectOrientedProgramming.Lab1.Entities.ShipParts;
+using Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-namespace Itmo.ObjectOrientedProgramming.Lab1.Entities;
+namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Ships;
 
 public class MeridianShip : Ship
 {

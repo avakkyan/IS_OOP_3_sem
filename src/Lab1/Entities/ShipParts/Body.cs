@@ -1,13 +1,13 @@
 ﻿using System;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-namespace Itmo.ObjectOrientedProgramming.Lab1.Entities;
+namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.ShipParts;
 
 public class Body
 {
-    private const int HitPoints1 = 10;
-    private const int HitPoints2 = 50;
-    private const int HitPoints3 = 200;
+    private const double HitPoints1 = 10;
+    private const double HitPoints2 = 50;
+    private const double HitPoints3 = 200;
     public Body(BodyClass bodyClass)
     {
         HitPoints = bodyClass switch
@@ -19,5 +19,9 @@ public class Body
         };
     }
 
-    public int HitPoints { get; set; }
+    public double HitPoints { get; private set; }
+    public void TakeDamage(double damage)
+    {
+        HitPoints -= damage;
+    }
 }
