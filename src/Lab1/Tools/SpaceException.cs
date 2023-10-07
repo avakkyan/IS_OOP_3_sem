@@ -5,8 +5,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Tools;
 public class SpaceException : Exception
 {
     public SpaceException(string message)
+        : base(message)
     {
-        Console.WriteLine(message);
     }
 
     public SpaceException()
