@@ -4,7 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Obstacles.Interfaces;
 
 public interface IObstacle
 {
-    public int Damage { get; }
+    double Damage { get; }
 
-    public void Hit(Ship ship);
+    void Hit(Ship ship);
 }

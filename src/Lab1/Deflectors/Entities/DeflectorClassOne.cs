@@ -1,11 +1,17 @@
-﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab1.Deflectors.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab1.Deflectors.Interfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Deflectors.Entities;
 
-public class DeflectorClass1 : IDeflector
+public class DeflectorClassOne : IDeflector
 {
-    public double HitPoints { get; private set; } = 10;
+    private const double ClassOneHitPoints = 10;
+
+    public DeflectorClassOne()
+    {
+        HitPoints = ClassOneHitPoints;
+    }
+
+    public double HitPoints { get; private set; }
     public PhotonDeflector? PhotonDeflector { get; private set; }
 
     public void TakeDamage(double damage)
@@ -16,6 +22,5 @@ public class DeflectorClass1 : IDeflector
     public void AddPhotonDeflector()
     {
         PhotonDeflector = new PhotonDeflector();
-        Console.WriteLine("zalupa");
     }
 }

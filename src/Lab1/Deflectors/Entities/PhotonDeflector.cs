@@ -2,7 +2,14 @@
 
 public class PhotonDeflector
 {
-    public double HitPoints { get; private set; } = 3000;
+    private const double PhotonHitPoints = 3000;
+
+    public PhotonDeflector()
+    {
+        HitPoints = PhotonHitPoints;
+    }
+
+    public double HitPoints { get; private set; }
     public void TakeDamage(double damage)
     {
         HitPoints -= damage;

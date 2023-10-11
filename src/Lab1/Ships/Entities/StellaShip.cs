@@ -11,7 +11,7 @@ public class StellaShip : Ship
     {
         AddEngine(new CPulseEngine());
         AddEngine(new OmegaJumpEngine());
-        Deflector = new DeflectorClass1();
+        Deflector = new DeflectorClassOne();
         WeightSizeCoefficient = Small;
     }
 }

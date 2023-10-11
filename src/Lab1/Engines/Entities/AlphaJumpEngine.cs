@@ -8,9 +8,20 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Engines.Entities;
 
 public class AlphaJumpEngine : IJumpEngine
 {
-    public double Speed { get; init; } = 10;
-    public double FuelConsumption { get; init; } = 10;
-    public double Range { get; } = 100;
+    private const double AlphaSpeed = 10;
+    private const double AlphaFuelConsumption = 10;
+    private const double AlphaRange = 100;
+
+    public AlphaJumpEngine()
+    {
+        Speed = AlphaSpeed;
+        FuelConsumption = AlphaFuelConsumption;
+        Range = AlphaRange;
+    }
+
+    public double Speed { get; }
+    public double FuelConsumption { get; }
+    public double Range { get; }
     public double CalculateFuelAmount(double distance)
     {
         if (Range < distance)

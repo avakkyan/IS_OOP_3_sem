@@ -2,9 +2,15 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.ShipBodies.Entities;
 
-public class BodyClass3 : IBody
+public class BodyClassThree : IBody
 {
-    public double HitPoints { get; private set; } = 200;
+    private const double ClassThreeHitPoints = 200;
+    public BodyClassThree()
+    {
+        HitPoints = ClassThreeHitPoints;
+    }
+
+    public double HitPoints { get; private set; }
 
     public void TakeDamage(double damage)
     {

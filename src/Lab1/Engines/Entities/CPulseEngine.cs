@@ -1,14 +1,24 @@
-﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab1.Engines.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab1.Engines.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab1.Routes.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Engines.Entities;
 
 public class CPulseEngine : IPulseEngine
 {
-    public double Speed { get; init; } = 10;
-    public double FuelConsumption { get; init; } = 10;
-    public double StartUpAmount { get; init; } = 10;
+    private const double CSpeed = 10;
+    private const double CFuelConsumption = 10;
+    private const double CStartUpAmount = 10;
+
+    public CPulseEngine()
+    {
+        Speed = CSpeed;
+        FuelConsumption = CFuelConsumption;
+        StartUpAmount = CStartUpAmount;
+    }
+
+    public double Speed { get; }
+    public double FuelConsumption { get; }
+    public double StartUpAmount { get; }
     public double CalculateFuelAmount(double distance)
     {
         return StartUpAmount + (CalculateTime(distance) * FuelConsumption);
@@ -16,11 +26,6 @@ public class CPulseEngine : IPulseEngine
 
     public double CalculateFuelAmount(Section section)
     {
-        if (section is null)
-        {
-            throw new ArgumentException("Section is null");
-        }
-
         return CalculateFuelAmount(section.Distance);
     }
 

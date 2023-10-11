@@ -2,5 +2,5 @@
 
 public interface IPulseEngine : IEngine
 {
-    public double StartUpAmount { get; init; }
+    double StartUpAmount { get; }
 }

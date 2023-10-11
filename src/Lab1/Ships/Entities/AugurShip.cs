@@ -12,8 +12,8 @@ public class AugurShip : Ship
     {
         AddEngine(new EPulseEngine());
         AddEngine(new AlphaJumpEngine());
-        Deflector = new DeflectorClass3();
-        Body = new BodyClass3();
+        Deflector = new DeflectorClassThree();
+        Body = new BodyClassThree();
         WeightSizeCoefficient = Big;
     }
 }

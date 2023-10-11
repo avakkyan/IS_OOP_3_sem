@@ -20,20 +20,16 @@ public class ShipService : IShipService
         Ship? optimalShip = null;
         foreach (Ship ship in ships)
         {
-            Success success;
-            try
-            {
-                success = PassRoute(route, ship);
-            }
-            catch (SpaceException)
+            Result result = PassRoute(route, ship);
+            if (result.Status != Status.Success)
             {
                 continue;
             }
 
-            if (success.FuelAmount < minFuelAmount)
+            if (result.FuelAmount < minFuelAmount)
             {
                 optimalShip = ship;
-                minFuelAmount = success.FuelAmount;
+                minFuelAmount = result.FuelAmount;
             }
         }
 
@@ -45,15 +41,16 @@ public class ShipService : IShipService
         return optimalShip;
     }
 
-    public Success PassRoute(Route route, Ship ship)
+    public Result PassRoute(Route route, Ship ship)
     {
         double time = 0;
         double fuelAmount = 0;
         foreach (Section section in route.Sections)
         {
-            if (!section.TryEnterSection(ship))
+            Result result = section.TryEnterSection(ship);
+            if (result.Status != Status.Success)
             {
-                throw new SpaceException("Ship doesn't have an engine to enter the environment");
+                return result;
             }
 
             foreach (IObstacle obstacle in section.Environment.Obstacles)
@@ -62,12 +59,12 @@ public class ShipService : IShipService
 
                 if (ship.Body.HitPoints <= 0)
                 {
-                    throw new SpaceException("Ship is destroyed");
+                    return new Result(Status.ShipIsDestroyed);
                 }
 
                 if (!ship.IsCrewAlive)
                 {
-                    throw new SpaceException("Crew is dead");
+                    return new Result(Status.CrewIsDead);
                 }
             }
 
@@ -87,7 +84,7 @@ public class ShipService : IShipService
             double amount = engine.CalculateFuelAmount(section);
             if (fuel.Amount < amount)
             {
-                throw new SpaceException("Not enough fuel");
+                return new Result(Status.NotEnoughFuel);
             }
 
             fuel.Reduce(amount);
@@ -95,6 +92,6 @@ public class ShipService : IShipService
             time += engine.CalculateTime(section);
         }
 
-        return new Success(time, fuelAmount);
+        return new Result(Status.Success, time, fuelAmount);
     }
 }

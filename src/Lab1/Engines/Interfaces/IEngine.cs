@@ -4,12 +4,12 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Engines.Interfaces;
 
 public interface IEngine
 {
-    public double Speed { get; init; }
-    public double FuelConsumption { get; init; }
+    double Speed { get; }
+    double FuelConsumption { get; }
 
-    public double CalculateFuelAmount(double distance);
+    double CalculateFuelAmount(double distance);
 
-    public double CalculateFuelAmount(Section section);
-    public double CalculateTime(double distance);
-    public double CalculateTime(Section section);
+    double CalculateFuelAmount(Section section);
+    double CalculateTime(double distance);
+    double CalculateTime(Section section);
 }

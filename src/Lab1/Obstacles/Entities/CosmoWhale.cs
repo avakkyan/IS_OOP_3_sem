@@ -5,7 +5,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Obstacles.Entities;
 
 public class CosmoWhale : INitrideObstacle
 {
-    public int Damage { get; init; } = 400;
+    private const double CosmoWhaleDamage = 400;
+    public CosmoWhale()
+    {
+        Damage = CosmoWhaleDamage;
+    }
+
+    public double Damage { get; }
     public void Hit(Ship ship)
     {
         if (ship.HasAntiNitrineEmitter)

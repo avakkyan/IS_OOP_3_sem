@@ -5,7 +5,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Obstacles.Entities;
 
 public class Meteorite : ISpaceObstacle
 {
-    public int Damage { get; init; } = 15;
+    private const double MeteoriteDamage = 15;
+    public Meteorite()
+    {
+        Damage = MeteoriteDamage;
+    }
+
+    public double Damage { get; }
 
     public void Hit(Ship ship)
     {

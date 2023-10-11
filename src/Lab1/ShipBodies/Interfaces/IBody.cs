@@ -2,7 +2,7 @@
 
 public interface IBody
 {
-    public double HitPoints { get; }
+    double HitPoints { get; }
 
-    public void TakeDamage(double damage);
+    void TakeDamage(double damage);
 }

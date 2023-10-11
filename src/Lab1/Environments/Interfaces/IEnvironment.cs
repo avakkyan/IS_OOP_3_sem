@@ -5,6 +5,5 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Environments.Interfaces;
 
 public interface IEnvironment
 {
-    public IReadOnlyCollection<IObstacle> Obstacles { get; }
-    public void AddObstacle(IObstacle obstacle);
+    IReadOnlyCollection<IObstacle> Obstacles { get; }
 }

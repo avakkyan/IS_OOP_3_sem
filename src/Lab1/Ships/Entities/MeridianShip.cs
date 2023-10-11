@@ -12,8 +12,8 @@ public class MeridianShip : Ship
     {
         AddEngine(new EPulseEngine());
         AddEngine(new GammaJumpEngine());
-        Deflector = new DeflectorClass1();
-        Body = new BodyClass2();
+        Deflector = new DeflectorClassOne();
+        Body = new BodyClassTwo();
         WeightSizeCoefficient = Middle;
         HasAntiNitrineEmitter = true;
     }

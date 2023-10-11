@@ -2,10 +2,17 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Deflectors.Entities;
 
-public class DeflectorClass3 : IDeflector
+public class DeflectorClassTwo : IDeflector
 {
-    public double HitPoints { get; private set; } = 200;
-    public PhotonDeflector? PhotonDeflector { get; set; }
+    private const double ClassTwoHitPoints = 50;
+
+    public DeflectorClassTwo()
+    {
+        HitPoints = ClassTwoHitPoints;
+    }
+
+    public double HitPoints { get; private set; }
+    public PhotonDeflector? PhotonDeflector { get; private set; }
 
     public void TakeDamage(double damage)
     {

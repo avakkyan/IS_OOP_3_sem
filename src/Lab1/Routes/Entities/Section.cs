@@ -1,8 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using Itmo.ObjectOrientedProgramming.Lab1.Engines.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab1.Environments.Entities;
 using Itmo.ObjectOrientedProgramming.Lab1.Environments.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab1.Ships.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Ships.Services;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Routes.Entities;
 
@@ -10,7 +11,7 @@ public class Section
 {
     public Section(IEnvironment environment, double distance = 0)
     {
-        Environment = environment ?? throw new ArgumentException("Environment is null");
+        Environment = environment;
         if (environment is HighDensityEnvironment highDensityEnvironment)
         {
             Distance = highDensityEnvironment.Channels.Sum();
@@ -24,15 +25,27 @@ public class Section
     public IEnvironment Environment { get; }
     public double Distance { get; }
 
-    public bool TryEnterSection(Ship ship)
+    public Result TryEnterSection(Ship ship)
     {
-        if (ship is null)
+        if (Environment is HighDensityEnvironment environment && ship.HasJumpEngine())
         {
-            throw new ArgumentException("Ship is null");
+            var engine = (IJumpEngine)ship.Engines.First(x => x is IJumpEngine);
+            if (environment.Channels.All(x => x <= engine.Range))
+            {
+                return new Result(Status.Success);
+            }
+            else
+            {
+                return new Result(Status.ShipIsLost);
+            }
         }
 
-        return (Environment is HighDensityEnvironment && ship.HasJumpEngine()) ||
-               (Environment is SpaceEnvironment && ship.HasPulseEngine()) ||
-               (Environment is NitrideParticlesEnvironment && ship.HasPulseEngineClassE());
+        if ((Environment is SpaceEnvironment && ship.HasPulseEngine()) ||
+               (Environment is NitrideParticlesEnvironment && ship.HasPulseEngineClassE()))
+        {
+            return new Result(Status.Success);
+        }
+
+        return new Result(Status.ShipIsDestroyed);
     }
 }

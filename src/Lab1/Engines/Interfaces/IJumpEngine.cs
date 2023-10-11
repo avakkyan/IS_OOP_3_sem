@@ -2,5 +2,5 @@
 
 public interface IJumpEngine : IEngine
 {
-    public double Range { get; }
+    double Range { get; }
 }

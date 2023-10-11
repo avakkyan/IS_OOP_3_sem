@@ -6,9 +6,20 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Engines.Entities;
 
 public class EPulseEngine : IPulseEngine
 {
-    public double Speed { get; init; } = 10;
-    public double FuelConsumption { get; init; } = 20;
-    public double StartUpAmount { get; init; } = 10;
+    private const double ESpeed = 10;
+    private const double EFuelConsumption = 20;
+    private const double EStartUpAmount = 10;
+
+    public EPulseEngine()
+    {
+        Speed = ESpeed;
+        FuelConsumption = EFuelConsumption;
+        StartUpAmount = EStartUpAmount;
+    }
+
+    public double Speed { get; }
+    public double FuelConsumption { get; }
+    public double StartUpAmount { get; }
     public double CalculateFuelAmount(double distance)
     {
         return StartUpAmount + (Math.Log(CalculateTime(distance) + 1) * FuelConsumption);
@@ -16,11 +27,6 @@ public class EPulseEngine : IPulseEngine
 
     public double CalculateFuelAmount(Section section)
     {
-        if (section is null)
-        {
-            throw new ArgumentException("Section is null");
-        }
-
         return CalculateFuelAmount(section.Distance);
     }
 
