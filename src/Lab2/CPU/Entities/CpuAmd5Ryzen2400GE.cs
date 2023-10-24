@@ -11,7 +11,7 @@ public class CpuAmd5Ryzen2400Ge : IAmdCpu, ICloneable
     private static int _ryzen2400MemoryFrequencies = 2933;
     private static int _ryzen2400HeatRelease = 35;
     private static int _ryzen2400PowerConsumption = 35;
-    private MySocket _mySocket = new MySocketAm4();
+    private MySocket _ryzen2400Socket = new MySocketAm4();
     public CpuAmd5Ryzen2400Ge()
     {
         CoreFrequency = _ryzen2400CoreFrequency;
@@ -20,7 +20,7 @@ public class CpuAmd5Ryzen2400Ge : IAmdCpu, ICloneable
         HeatRelease = _ryzen2400HeatRelease;
         PowerConsumption = _ryzen2400PowerConsumption;
         IsVideoCore = true;
-        CpuSoket = _mySocket;
+        CpuSoket = _ryzen2400Socket;
     }
 
     public double CoreFrequency { get; private set; }

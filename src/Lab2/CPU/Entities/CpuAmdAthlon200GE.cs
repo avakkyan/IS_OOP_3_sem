@@ -11,7 +11,7 @@ public class CpuAmdAthlon200Ge : IAmdCpu, ICloneable
     private static int _athlon200MemoryFrequencies = 4800;
     private static int _athlon200HeatRelease = 35;
     private static int _athlon200PowerConsumption = 35;
-    private MySocket _mySocket = new MySocketAm4();
+    private MySocket _athlon200GeSocket = new MySocketAm4();
 
     public CpuAmdAthlon200Ge()
     {
@@ -21,7 +21,7 @@ public class CpuAmdAthlon200Ge : IAmdCpu, ICloneable
         HeatRelease = _athlon200HeatRelease;
         PowerConsumption = _athlon200PowerConsumption;
         IsVideoCore = false;
-        CpuSoket = _mySocket;
+        CpuSoket = _athlon200GeSocket;
     }
 
     public double CoreFrequency { get; private set; }

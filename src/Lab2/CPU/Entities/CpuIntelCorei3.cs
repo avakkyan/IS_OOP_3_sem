@@ -11,7 +11,7 @@ public class CpuIntelCorei3 : IIntelCpu, ICloneable
     private static int _i3cMemoryFrequencies = 4800;
     private static int _i3cHeatRelease = 89;
     private static int _i3PowerConsumption = 58;
-    private MySocket _mySocket = new MySocketLga1700();
+    private MySocket _i3Socket = new MySocketLga1700();
 
     public CpuIntelCorei3()
     {
@@ -21,7 +21,7 @@ public class CpuIntelCorei3 : IIntelCpu, ICloneable
         HeatRelease = _i3cHeatRelease;
         PowerConsumption = _i3PowerConsumption;
         IsVideoCore = false;
-        CpuSoket = _mySocket;
+        CpuSoket = _i3Socket;
     }
 
     public double CoreFrequency { get; private set; }

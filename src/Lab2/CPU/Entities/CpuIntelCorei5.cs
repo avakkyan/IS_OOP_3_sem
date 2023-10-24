@@ -11,7 +11,7 @@ public class CpuIntelCorei5 : IIntelCpu, ICloneable
     private static int _i5MemoryFrequencies = 4800;
     private static int _i5HeatRelease = 65;
     private static int _i5PowerConsumption = 65;
-    private MySocket _mySocket = new MySocketLga1700();
+    private MySocket _i5Socket = new MySocketLga1700();
 
     public CpuIntelCorei5()
     {
@@ -21,7 +21,7 @@ public class CpuIntelCorei5 : IIntelCpu, ICloneable
         HeatRelease = _i5HeatRelease;
         PowerConsumption = _i5PowerConsumption;
         IsVideoCore = false;
-        CpuSoket = _mySocket;
+        CpuSoket = _i5Socket;
     }
 
     public double CoreFrequency { get; private set; }
