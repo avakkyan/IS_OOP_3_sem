@@ -1,8 +1,9 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.Storage.Interfaces;
+﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab2.Storage.Interfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Storage.Entites;
 
-public class HddStorageWdBlue : IHddStorage
+public class HddStorageWdBlue : IHddStorage, ICloneable
 {
     private static int _hhdWdBlueCapacity = 1000;
     private static double _hhdWdBluePowerConsumption = 6.8;
@@ -14,11 +15,44 @@ public class HddStorageWdBlue : IHddStorage
         StorageCapacity = _hhdWdBlueCapacity;
         StoragePowerConsumption = _hhdWdBluePowerConsumption;
         SpindleRotationSpeed = _hhdWdBlueSpindleRotationSpeed;
-        HddConnetion = _hhdWdBlueConnection;
+        HddConnection = _hhdWdBlueConnection;
     }
 
-    public int StorageCapacity { get; }
-    public double StoragePowerConsumption { get; }
-    public int SpindleRotationSpeed { get; }
-    public StorageConnectionType HddConnetion { get; }
+    public int StorageCapacity { get; private set; }
+    public double StoragePowerConsumption { get; private set; }
+    public int SpindleRotationSpeed { get; private set; }
+    public StorageConnectionType HddConnection { get; private set; }
+
+    public HddStorageWdBlue UpdateStorageCapacity(int storageCapacity)
+    {
+        var hddStorageWdBlue = (HddStorageWdBlue)Clone();
+        hddStorageWdBlue.StorageCapacity = storageCapacity;
+        return hddStorageWdBlue;
+    }
+
+    public HddStorageWdBlue UpdateStoragePowerConsumption(int storagePowerConsumption)
+    {
+        var hddStorageWdBlue = (HddStorageWdBlue)Clone();
+        hddStorageWdBlue.StoragePowerConsumption = storagePowerConsumption;
+        return hddStorageWdBlue;
+    }
+
+    public HddStorageWdBlue UpdateSpindleRotationSpeed(int spindleRotationSpeed)
+    {
+        var hddStorageWdBlue = (HddStorageWdBlue)Clone();
+        hddStorageWdBlue.SpindleRotationSpeed = spindleRotationSpeed;
+        return hddStorageWdBlue;
+    }
+
+    public HddStorageWdBlue UpdateHddConnetion(StorageConnectionType hddConnection)
+    {
+        var hddStorageWdBlue = (HddStorageWdBlue)Clone();
+        hddStorageWdBlue.HddConnection = hddConnection;
+        return hddStorageWdBlue;
+    }
+
+    public object Clone()
+    {
+        return new HddStorageWdBlue();
+    }
 }
