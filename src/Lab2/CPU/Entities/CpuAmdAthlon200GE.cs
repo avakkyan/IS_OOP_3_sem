@@ -45,6 +45,13 @@ public class CpuAmdAthlon200Ge : IAmdCpu, ICloneable
         return cpuAmdAthlon200Ge;
     }
 
+    public CpuAmdAthlon200Ge UpdateVideoCore(bool isVideoCore)
+    {
+        var cpuAmdAthlon200Ge = (CpuAmdAthlon200Ge)Clone();
+        cpuAmdAthlon200Ge.IsVideoCore = isVideoCore;
+        return cpuAmdAthlon200Ge;
+    }
+
     public CpuAmdAthlon200Ge UpdateMemoryFrequencies(int memoryFrequencies)
     {
         var cpuAmdAthlon200Ge = (CpuAmdAthlon200Ge)Clone();

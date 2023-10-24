@@ -46,6 +46,13 @@ public class CpuIntelCorei3 : IIntelCpu, ICloneable
         return cpuIntelCorei3;
     }
 
+    public CpuIntelCorei3 UpdateVideoCore(bool isVideoCore)
+    {
+        var cpuIntelCorei3 = (CpuIntelCorei3)Clone();
+        cpuIntelCorei3.IsVideoCore = isVideoCore;
+        return cpuIntelCorei3;
+    }
+
     public CpuIntelCorei3 UpdateMemoryFrequencies(int memoryFrequencies)
     {
         var cpuIntelCorei3 = (CpuIntelCorei3)Clone();

@@ -45,6 +45,13 @@ public class CpuIntelCorei5 : IIntelCpu, ICloneable
         return cpuIntelCorei5;
     }
 
+    public CpuIntelCorei5 UpdateVideoCore(bool isVideoCore)
+    {
+        var cpuIntelCorei5 = (CpuIntelCorei5)Clone();
+        cpuIntelCorei5.IsVideoCore = isVideoCore;
+        return cpuIntelCorei5;
+    }
+
     public CpuIntelCorei5 UpdateMemoryFrequencies(int memoryFrequencies)
     {
         var cpuIntelCorei5 = (CpuIntelCorei5)Clone();

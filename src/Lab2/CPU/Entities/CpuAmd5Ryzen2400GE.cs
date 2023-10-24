@@ -51,6 +51,13 @@ public class CpuAmd5Ryzen2400Ge : IAmdCpu, ICloneable
         return cpuAmd5Ryzen2400Ge;
     }
 
+    public CpuAmd5Ryzen2400Ge UpdateVideoCore(bool isVideoCore)
+    {
+        var cpuAmd5Ryzen2400Ge = (CpuAmd5Ryzen2400Ge)Clone();
+        cpuAmd5Ryzen2400Ge.IsVideoCore = isVideoCore;
+        return cpuAmd5Ryzen2400Ge;
+    }
+
     public CpuAmd5Ryzen2400Ge UpdateHeatRelease(int heatRelease)
     {
         var cpuAmd5Ryzen2400Ge = (CpuAmd5Ryzen2400Ge)Clone();
