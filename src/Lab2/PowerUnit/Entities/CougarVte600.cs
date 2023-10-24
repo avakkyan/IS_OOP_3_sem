@@ -1,8 +1,9 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Interfaces;
+﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Interfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Entities;
 
-public class CougarVte600 : ICougarPowerUnit
+public class CougarVte600 : ICougarPowerUnit, ICloneable
 {
     private int _peakLoad = 600;
 
@@ -11,5 +12,17 @@ public class CougarVte600 : ICougarPowerUnit
         PeakLoad = _peakLoad;
     }
 
-    public int PeakLoad { get; }
+    public int PeakLoad { get; private set; }
+
+    public CougarVte600 UpdatePeakLoad(int peakLoad)
+    {
+        var cougarVte600 = (CougarVte600)Clone();
+        cougarVte600.PeakLoad = peakLoad;
+        return cougarVte600;
+    }
+
+    public object Clone()
+    {
+        return new CougarVte600();
+    }
 }
