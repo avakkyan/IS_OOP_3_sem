@@ -1,4 +1,6 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab2.CPU.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.Socket.Entities;
+
+namespace Itmo.ObjectOrientedProgramming.Lab2.CPU.Interfaces;
 
 public interface IСpu
 {
@@ -8,4 +10,5 @@ public interface IСpu
     int MemoryFrequencies { get; }
     int HeatRelease { get; }
     int PowerConsumption { get; }
+    MySocket CpuSoket { get; }
 }
