@@ -7,11 +7,11 @@ public class GpuEightMemoryFactory : IGpuFactory
 {
     public IGeForceGpu CreateGeForceGpu()
     {
-        return new MsiGeForceRtxGpu();
+        return new MsiGeForceGpu();
     }
 
     public IAmdGpu CreateAmdGpu()
     {
-        return new PowerColorAmdRadeonRxGpu();
+        return new PowerColorAmdGpu();
     }
 }

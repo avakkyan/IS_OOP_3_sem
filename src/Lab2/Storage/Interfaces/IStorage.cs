@@ -1,6 +1,8 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab2.Storage.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.DataBase;
 
-public interface IStorage
+namespace Itmo.ObjectOrientedProgramming.Lab2.Storage.Interfaces;
+
+public interface IStorage : IComputerDetail
 {
     int StorageCapacity { get; }
     double StoragePowerConsumption { get; }

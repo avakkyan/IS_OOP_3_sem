@@ -6,11 +6,12 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.CPU.Entities;
 
 public class CpuIntelCorei3 : IIntelCpu, ICloneable
 {
-    private static double _i3coreFrequency = 3.3;
-    private static int _i3NumberOfCores = 4;
-    private static int _i3cMemoryFrequencies = 4800;
-    private static int _i3cHeatRelease = 89;
-    private static int _i3PowerConsumption = 58;
+    private const double _i3coreFrequency = 3.3;
+    private const int _i3NumberOfCores = 4;
+    private const int _i3cMemoryFrequencies = 4800;
+    private const int _i3cHeatRelease = 89;
+    private const int _i3PowerConsumption = 58;
+    private const string _i3Name = "CpuIntelCorei3";
     private MySocket _i3Socket = new MySocketLga1700();
 
     public CpuIntelCorei3()
@@ -21,7 +22,8 @@ public class CpuIntelCorei3 : IIntelCpu, ICloneable
         HeatRelease = _i3cHeatRelease;
         PowerConsumption = _i3PowerConsumption;
         IsVideoCore = false;
-        CpuSoket = _i3Socket;
+        Name = _i3Name;
+        CpuSocket = _i3Socket;
     }
 
     public double CoreFrequency { get; private set; }
@@ -30,7 +32,8 @@ public class CpuIntelCorei3 : IIntelCpu, ICloneable
     public int MemoryFrequencies { get; private set; }
     public int HeatRelease { get; private set; }
     public int PowerConsumption { get; private set; }
-    public MySocket CpuSoket { get; private set; }
+    public string Name { get; private set; }
+    public MySocket CpuSocket { get; private set; }
 
     public CpuIntelCorei3 UpdateCoreFrequency(double coreFrequency)
     {
@@ -71,6 +74,13 @@ public class CpuIntelCorei3 : IIntelCpu, ICloneable
     {
         var cpuIntelCorei3 = (CpuIntelCorei3)Clone();
         cpuIntelCorei3.PowerConsumption = powerConsumption;
+        return cpuIntelCorei3;
+    }
+
+    public CpuIntelCorei3 UpdatePowerName(string name)
+    {
+        var cpuIntelCorei3 = (CpuIntelCorei3)Clone();
+        cpuIntelCorei3.Name = name;
         return cpuIntelCorei3;
     }
 

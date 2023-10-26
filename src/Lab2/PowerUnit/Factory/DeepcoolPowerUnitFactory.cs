@@ -7,6 +7,6 @@ public class DeepcoolPowerUnitFactory : IPowerUnitFactory
 {
     public IPowerUnit CreatePowerUnit()
     {
-        return new DeepcoolPf600();
+        return new DeepcoolPowerUnit();
     }
 }

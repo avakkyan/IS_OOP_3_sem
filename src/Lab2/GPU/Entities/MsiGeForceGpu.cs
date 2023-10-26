@@ -3,7 +3,7 @@ using Itmo.ObjectOrientedProgramming.Lab2.GPU.Interfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.GPU.Entities;
 
-public class MsiGeForceRtxGpu : IGeForceGpu, ICloneable
+public class MsiGeForceGpu : IGeForceGpu, ICloneable
 {
     private const double _msiGeForceRtxHeight = 199;
     private const double _msiGeForceRtxWidth = 120;
@@ -11,15 +11,17 @@ public class MsiGeForceRtxGpu : IGeForceGpu, ICloneable
     private const double _msiGeForceRtxPciEVersion = 4.0;
     private const int _msiGeForceRtxChipFrequency = 1830;
     private const int _msiGeForceRtxPowerConsumption = 115;
+    private const string _msiGeForceName = "MsiGeForceGpu";
 
-    public MsiGeForceRtxGpu()
+    public MsiGeForceGpu()
     {
         GpuHeight = _msiGeForceRtxHeight;
         GpuWidth = _msiGeForceRtxWidth;
         GpuVideoMemoryCapacity = _msiGeForceRtxMemoryCapacity;
         GpuPciEVersion = _msiGeForceRtxPciEVersion;
         GpuChipFrequency = _msiGeForceRtxChipFrequency;
-        GpuPowerConsumption = _msiGeForceRtxPowerConsumption;
+        PowerConsumption = _msiGeForceRtxPowerConsumption;
+        Name = _msiGeForceName;
     }
 
     public double GpuHeight { get; private set; }
@@ -27,51 +29,60 @@ public class MsiGeForceRtxGpu : IGeForceGpu, ICloneable
     public int GpuVideoMemoryCapacity { get; private set; }
     public double GpuPciEVersion { get; private set; }
     public int GpuChipFrequency { get; private set; }
-    public int GpuPowerConsumption { get; private set; }
-    public MsiGeForceRtxGpu UpdateGpuHeight(double gpuHeight)
+    public int PowerConsumption { get; private set; }
+    public string Name { get; private set; }
+
+    public MsiGeForceGpu UpdateGpuHeight(double gpuHeight)
     {
-        var msiGeForceRtxGpu = (MsiGeForceRtxGpu)Clone();
+        var msiGeForceRtxGpu = (MsiGeForceGpu)Clone();
         msiGeForceRtxGpu.GpuHeight = gpuHeight;
         return msiGeForceRtxGpu;
     }
 
-    public MsiGeForceRtxGpu UpdateGpuWidth(double gpuWidth)
+    public MsiGeForceGpu UpdateGpuWidth(double gpuWidth)
     {
-        var msiGeForceRtxGpu = (MsiGeForceRtxGpu)Clone();
+        var msiGeForceRtxGpu = (MsiGeForceGpu)Clone();
         msiGeForceRtxGpu.GpuWidth = gpuWidth;
         return msiGeForceRtxGpu;
     }
 
-    public MsiGeForceRtxGpu UpdateGpuVideoMemoryCapacity(int gpuVideoMemoryCapacity)
+    public MsiGeForceGpu UpdateGpuVideoMemoryCapacity(int gpuVideoMemoryCapacity)
     {
-        var msiGeForceRtxGpu = (MsiGeForceRtxGpu)Clone();
+        var msiGeForceRtxGpu = (MsiGeForceGpu)Clone();
         msiGeForceRtxGpu.GpuVideoMemoryCapacity = gpuVideoMemoryCapacity;
         return msiGeForceRtxGpu;
     }
 
-    public MsiGeForceRtxGpu UpdateGpuPciEVersion(double gpuPciEVersion)
+    public MsiGeForceGpu UpdateGpuPciEVersion(double gpuPciEVersion)
     {
-        var msiGeForceRtxGpu = (MsiGeForceRtxGpu)Clone();
+        var msiGeForceRtxGpu = (MsiGeForceGpu)Clone();
         msiGeForceRtxGpu.GpuPciEVersion = gpuPciEVersion;
         return msiGeForceRtxGpu;
     }
 
-    public MsiGeForceRtxGpu UpdateGpuChipFrequency(int gpuChipFrequency)
+    public MsiGeForceGpu UpdateGpuChipFrequency(int gpuChipFrequency)
     {
-        var msiGeForceRtxGpu = (MsiGeForceRtxGpu)Clone();
+        var msiGeForceRtxGpu = (MsiGeForceGpu)Clone();
         msiGeForceRtxGpu.GpuChipFrequency = gpuChipFrequency;
         return msiGeForceRtxGpu;
     }
 
-    public MsiGeForceRtxGpu UpdateGpuPowerConsumption(int gpuPowerConsumption)
+    public MsiGeForceGpu UpdateGpuPowerConsumption(int gpuPowerConsumption)
     {
-        var msiGeForceRtxGpu = (MsiGeForceRtxGpu)Clone();
-        msiGeForceRtxGpu.GpuPowerConsumption = gpuPowerConsumption;
+        var msiGeForceRtxGpu = (MsiGeForceGpu)Clone();
+        msiGeForceRtxGpu.PowerConsumption = gpuPowerConsumption;
+        return msiGeForceRtxGpu;
+    }
+
+    public MsiGeForceGpu UpdateGpuName(string name)
+    {
+        var msiGeForceRtxGpu = (MsiGeForceGpu)Clone();
+        msiGeForceRtxGpu.Name = name;
         return msiGeForceRtxGpu;
     }
 
     public object Clone()
     {
-        return new MsiGeForceRtxGpu();
+        return new MsiGeForceGpu();
     }
 }

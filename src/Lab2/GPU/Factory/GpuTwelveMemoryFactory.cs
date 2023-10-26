@@ -7,11 +7,11 @@ public class GpuTwelveMemoryFactory : IGpuFactory
 {
     public IAmdGpu CreateAmdGpu()
     {
-        return new SapphireAmdRadeonRxGpu();
+        return new SapphireAmdGpu();
     }
 
     public IGeForceGpu CreateGeForceGpu()
     {
-        return new GigabyteGeForceGpuRtxGpu();
+        return new GigabyteGeForceGpu();
     }
 }

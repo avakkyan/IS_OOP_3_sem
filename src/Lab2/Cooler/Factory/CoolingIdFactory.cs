@@ -7,6 +7,6 @@ public class CoolingIdFactory : ICoolerFactory
 {
     public ICooler CreateCooler()
     {
-        return new IdCoolingSe224Xts();
+        return new CoolerIdCooling();
     }
 }

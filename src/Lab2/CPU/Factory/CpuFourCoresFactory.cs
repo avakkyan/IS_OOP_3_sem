@@ -7,7 +7,7 @@ public class CpuFourCoresFactory : ICpuFactory
 {
     public IAmdCpu CreateAmdCpu()
     {
-        return new CpuAmd5Ryzen2400Ge();
+        return new CpuAmd5Ryzen();
     }
 
     public IIntelCpu CreateIntelCpu()

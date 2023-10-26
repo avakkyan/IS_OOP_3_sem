@@ -7,7 +7,7 @@ public class CpuTwoCoresFactory : ICpuFactory
 {
     public IAmdCpu CreateAmdCpu()
     {
-        return new CpuAmdAthlon200Ge();
+        return new CpuAmdAthlon();
     }
 
     public IIntelCpu CreateIntelCpu()

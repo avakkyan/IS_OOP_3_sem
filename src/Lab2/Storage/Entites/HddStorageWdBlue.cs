@@ -5,9 +5,10 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Storage.Entites;
 
 public class HddStorageWdBlue : IHddStorage, ICloneable
 {
-    private static int _hhdWdBlueCapacity = 1000;
-    private static double _hhdWdBluePowerConsumption = 6.8;
-    private static int _hhdWdBlueSpindleRotationSpeed = 7200;
+    private const int _hhdWdBlueCapacity = 1000;
+    private const double _hhdWdBluePowerConsumption = 6.8;
+    private const int _hhdWdBlueSpindleRotationSpeed = 7200;
+    private const string _hhdWdBlueName = "HddStorageWdBlue";
     private StorageConnectionType _hhdWdBlueConnection = new SataConnection();
 
     public HddStorageWdBlue()
@@ -16,11 +17,14 @@ public class HddStorageWdBlue : IHddStorage, ICloneable
         StoragePowerConsumption = _hhdWdBluePowerConsumption;
         SpindleRotationSpeed = _hhdWdBlueSpindleRotationSpeed;
         HddConnection = _hhdWdBlueConnection;
+        Name = _hhdWdBlueName;
     }
 
     public int StorageCapacity { get; private set; }
     public double StoragePowerConsumption { get; private set; }
     public int SpindleRotationSpeed { get; private set; }
+    public int PowerConsumption { get; private set; }
+    public string Name { get; private set; }
     public StorageConnectionType HddConnection { get; private set; }
 
     public HddStorageWdBlue UpdateStorageCapacity(int storageCapacity)
@@ -48,6 +52,13 @@ public class HddStorageWdBlue : IHddStorage, ICloneable
     {
         var hddStorageWdBlue = (HddStorageWdBlue)Clone();
         hddStorageWdBlue.HddConnection = hddConnection;
+        return hddStorageWdBlue;
+    }
+
+    public HddStorageWdBlue UpdatePowerConsumption(int powerConsumption)
+    {
+        var hddStorageWdBlue = (HddStorageWdBlue)Clone();
+        hddStorageWdBlue.PowerConsumption = powerConsumption;
         return hddStorageWdBlue;
     }
 

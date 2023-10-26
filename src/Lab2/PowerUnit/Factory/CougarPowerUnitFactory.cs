@@ -7,6 +7,6 @@ public class CougarPowerUnitFactory : IPowerUnitFactory
 {
     public IPowerUnit CreatePowerUnit()
     {
-        return new CougarVte600();
+        return new CougarPowerUnit();
     }
 }

@@ -3,7 +3,7 @@ using Itmo.ObjectOrientedProgramming.Lab2.GPU.Interfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.GPU.Entities;
 
-public class GigabyteGeForceGpuRtxGpu : IGeForceGpu, ICloneable
+public class GigabyteGeForceGpu : IGeForceGpu, ICloneable
 {
     private const double _gigabyteGeForceHeight = 261;
     private const double _gigabyteGeForceWidth = 126;
@@ -11,15 +11,17 @@ public class GigabyteGeForceGpuRtxGpu : IGeForceGpu, ICloneable
     private const double _gigabyteGeForcePciEVersion = 4.0;
     private const int _gigabyteGeForceChipFrequency = 1920;
     private const int _gigabyteGeForcePowerConsumption = 200;
+    private const string _gigabyteGeForceName = "GigabyteGeForceGpu";
 
-    public GigabyteGeForceGpuRtxGpu()
+    public GigabyteGeForceGpu()
     {
         GpuHeight = _gigabyteGeForceHeight;
         GpuWidth = _gigabyteGeForceWidth;
         GpuVideoMemoryCapacity = _gigabyteGeForceVideoMemoryCapacity;
         GpuPciEVersion = _gigabyteGeForcePciEVersion;
         GpuChipFrequency = _gigabyteGeForceChipFrequency;
-        GpuPowerConsumption = _gigabyteGeForcePowerConsumption;
+        PowerConsumption = _gigabyteGeForcePowerConsumption;
+        Name = _gigabyteGeForceName;
     }
 
     public double GpuHeight { get; private set; }
@@ -27,52 +29,60 @@ public class GigabyteGeForceGpuRtxGpu : IGeForceGpu, ICloneable
     public int GpuVideoMemoryCapacity { get; private set; }
     public double GpuPciEVersion { get; private set; }
     public int GpuChipFrequency { get; private set; }
-    public int GpuPowerConsumption { get; private set; }
+    public int PowerConsumption { get; private set; }
+    public string Name { get; private set; }
 
-    public GigabyteGeForceGpuRtxGpu UpdateGpuHeight(double gpuHeight)
+    public GigabyteGeForceGpu UpdateGpuHeight(double gpuHeight)
     {
-        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpuRtxGpu)Clone();
+        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpu)Clone();
         gigabyteGeForceGpuRtxGpu.GpuHeight = gpuHeight;
         return gigabyteGeForceGpuRtxGpu;
     }
 
-    public GigabyteGeForceGpuRtxGpu UpdateGpuWidth(double gpuWidth)
+    public GigabyteGeForceGpu UpdateGpuWidth(double gpuWidth)
     {
-        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpuRtxGpu)Clone();
+        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpu)Clone();
         gigabyteGeForceGpuRtxGpu.GpuWidth = gpuWidth;
         return gigabyteGeForceGpuRtxGpu;
     }
 
-    public GigabyteGeForceGpuRtxGpu UpdateGpuVideoMemoryCapacity(int gpuVideoMemoryCapacity)
+    public GigabyteGeForceGpu UpdateGpuVideoMemoryCapacity(int gpuVideoMemoryCapacity)
     {
-        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpuRtxGpu)Clone();
+        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpu)Clone();
         gigabyteGeForceGpuRtxGpu.GpuVideoMemoryCapacity = gpuVideoMemoryCapacity;
         return gigabyteGeForceGpuRtxGpu;
     }
 
-    public GigabyteGeForceGpuRtxGpu UpdateGpuPciEVersion(double gpuPciEVersion)
+    public GigabyteGeForceGpu UpdateGpuPciEVersion(double gpuPciEVersion)
     {
-        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpuRtxGpu)Clone();
+        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpu)Clone();
         gigabyteGeForceGpuRtxGpu.GpuPciEVersion = gpuPciEVersion;
         return gigabyteGeForceGpuRtxGpu;
     }
 
-    public GigabyteGeForceGpuRtxGpu UpdateGpuChipFrequency(int gpuChipFrequency)
+    public GigabyteGeForceGpu UpdateGpuChipFrequency(int gpuChipFrequency)
     {
-        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpuRtxGpu)Clone();
+        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpu)Clone();
         gigabyteGeForceGpuRtxGpu.GpuChipFrequency = gpuChipFrequency;
         return gigabyteGeForceGpuRtxGpu;
     }
 
-    public GigabyteGeForceGpuRtxGpu UpdateGpuPowerConsumption(int gpuPowerConsumption)
+    public GigabyteGeForceGpu UpdateGpuPowerConsumption(int gpuPowerConsumption)
     {
-        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpuRtxGpu)Clone();
-        gigabyteGeForceGpuRtxGpu.GpuPowerConsumption = gpuPowerConsumption;
+        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpu)Clone();
+        gigabyteGeForceGpuRtxGpu.PowerConsumption = gpuPowerConsumption;
+        return gigabyteGeForceGpuRtxGpu;
+    }
+
+    public GigabyteGeForceGpu UpdateGpuName(string name)
+    {
+        var gigabyteGeForceGpuRtxGpu = (GigabyteGeForceGpu)Clone();
+        gigabyteGeForceGpuRtxGpu.Name = name;
         return gigabyteGeForceGpuRtxGpu;
     }
 
     public object Clone()
     {
-        return new GigabyteGeForceGpuRtxGpu();
+        return new GigabyteGeForceGpu();
     }
 }

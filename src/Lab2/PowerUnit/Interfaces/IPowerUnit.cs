@@ -1,6 +1,8 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.DataBase;
 
-public interface IPowerUnit
+namespace Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Interfaces;
+
+public interface IPowerUnit : IComputerDetail
 {
     int PeakLoad { get; }
 }

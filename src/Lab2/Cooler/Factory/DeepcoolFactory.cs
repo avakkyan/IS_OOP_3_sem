@@ -7,6 +7,6 @@ public class DeepcoolFactory : ICoolerFactory
 {
     public ICooler CreateCooler()
     {
-        return new CoolerDeepcoolGammaxx300();
+        return new CoolerDeepcool();
     }
 }

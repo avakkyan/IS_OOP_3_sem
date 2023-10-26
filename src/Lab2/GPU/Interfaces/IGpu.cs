@@ -1,11 +1,12 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab2.GPU.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.DataBase;
 
-public interface IGpu
+namespace Itmo.ObjectOrientedProgramming.Lab2.GPU.Interfaces;
+
+public interface IGpu : IComputerDetail
 {
     double GpuHeight { get; }
     double GpuWidth { get; }
     int GpuVideoMemoryCapacity { get; }
     double GpuPciEVersion { get; }
     int GpuChipFrequency { get; }
-    int GpuPowerConsumption { get; }
 }

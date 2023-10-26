@@ -1,5 +1,5 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab2.CPU.Interfaces;
 
-public interface IIntelCpu : IСpu
+public interface IIntelCpu : IMyСpu
 {
 }
