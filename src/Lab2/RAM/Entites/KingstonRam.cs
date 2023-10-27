@@ -8,6 +8,7 @@ public class KingstonRam : IRam, ICloneable
 {
     private const int _kingstonRamPowerConsumption = 2;
     private const int _kingstionRamMemory = 32;
+    private const int _kingstonRamDdrStandard = 3;
     private const string _kingstonRamName = "KingstonRam";
     private IList<int> _kingstionRamFrequencyJedec = new List<int>();
 
@@ -16,6 +17,7 @@ public class KingstonRam : IRam, ICloneable
         PowerConsumption = _kingstonRamPowerConsumption;
         TotalMemoryCapacity = _kingstionRamMemory;
         Name = _kingstonRamName;
+        RamDdrStandard = _kingstonRamDdrStandard;
         _kingstionRamFrequencyJedec.Add(15);
         _kingstionRamFrequencyJedec.Add(15);
         _kingstionRamFrequencyJedec.Add(17);
@@ -25,6 +27,7 @@ public class KingstonRam : IRam, ICloneable
     public int PowerConsumption { get; private set; }
     public string Name { get; private set; }
     public int TotalMemoryCapacity { get; private set; }
+    public int RamDdrStandard { get; private set; }
     public IList<int> RamFrequencyJedec { get; private set; }
     public KingstonRam UpdatePowerConsumption(int powerConsumption)
     {
@@ -51,6 +54,13 @@ public class KingstonRam : IRam, ICloneable
     {
         var kingstonFUurRam = (KingstonRam)Clone();
         kingstonFUurRam.Name = name;
+        return kingstonFUurRam;
+    }
+
+    public KingstonRam UpdateRamDdr(int ddrStandard)
+    {
+        var kingstonFUurRam = (KingstonRam)Clone();
+        kingstonFUurRam.RamDdrStandard = ddrStandard;
         return kingstonFUurRam;
     }
 

@@ -7,17 +7,17 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Cooler.Entties;
 
 public class CoolerDeepcool : IDeepcoolCooler, ICloneable
 {
-    private const double _deepcoolGammaxx300Dimensions = 1239687.35;
-    private const int _deepcoolGammaxx300TDP = 130;
+    private const double _deepcoolDimensions = 1239687.35;
+    private const int _deepcoolTDP = 130;
     private const string _deepcoolName = "CoolerDeepcool";
-    private const int _deepcoolGammaxx300PowerConsumption = 10;
+    private const int _deepcoolPowerConsumption = 10;
     private IList<MySocket> _socketList = new List<MySocket>();
     public CoolerDeepcool()
     {
-        CoolerDimensions = _deepcoolGammaxx300Dimensions;
-        CoolerTdp = _deepcoolGammaxx300TDP;
+        CoolerDimensions = _deepcoolDimensions;
+        CoolerTdp = _deepcoolTDP;
         Name = _deepcoolName;
-        PowerConsumption = _deepcoolGammaxx300PowerConsumption;
+        PowerConsumption = _deepcoolPowerConsumption;
         _socketList.Add(new MySocketAm4());
         _socketList.Add(new MySocketLga1700());
         CoolerSocket = _socketList;

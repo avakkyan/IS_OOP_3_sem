@@ -9,14 +9,14 @@ public class SsdStorageApacerPanther : ISsdStorage, ICloneable
     private const double _ssdApacerPantherPowerConsumption = 6.8;
     private const int _ssdApacerPantherMaximumOperatingSpeed = 241;
     private const string _ssdApacerPantherName = "SsdStorageApacerPanther";
-    private StorageConnectionType _ssdApacerPantherConnection = new SataConnection();
+    private int? _ssdApacerPantherConnectionSata = 4;
 
     public SsdStorageApacerPanther()
     {
         StorageCapacity = _ssdApacerPantherCapacity;
         StoragePowerConsumption = _ssdApacerPantherPowerConsumption;
         MaximumOperatingSpeed = _ssdApacerPantherMaximumOperatingSpeed;
-        SsdConnection = _ssdApacerPantherConnection;
+        SsdConnectionSata = _ssdApacerPantherConnectionSata;
         Name = _ssdApacerPantherName;
     }
 
@@ -25,7 +25,8 @@ public class SsdStorageApacerPanther : ISsdStorage, ICloneable
     public int MaximumOperatingSpeed { get; private set; }
     public int PowerConsumption { get; private set; }
     public string Name { get; private set; }
-    public StorageConnectionType SsdConnection { get; private set; }
+    public int? SsdConnectionPci { get; private set; }
+    public int? SsdConnectionSata { get; private set; }
 
     public SsdStorageApacerPanther UpdateStorageCapacity(int storageCapacity)
     {
@@ -48,10 +49,10 @@ public class SsdStorageApacerPanther : ISsdStorage, ICloneable
         return ssdStorageApacerPanther;
     }
 
-    public SsdStorageApacerPanther UpdateStorageCapacity(StorageConnectionType ssdConnection)
+    public SsdStorageApacerPanther UpdateStorageConnectionPci(int ssdConnectionPci)
     {
         var ssdStorageApacerPanther = (SsdStorageApacerPanther)Clone();
-        ssdStorageApacerPanther.SsdConnection = ssdConnection;
+        ssdStorageApacerPanther.SsdConnectionPci = ssdConnectionPci;
         return ssdStorageApacerPanther;
     }
 
@@ -59,6 +60,13 @@ public class SsdStorageApacerPanther : ISsdStorage, ICloneable
     {
         var ssdStorageApacerPanther = (SsdStorageApacerPanther)Clone();
         ssdStorageApacerPanther.PowerConsumption = powerConsumption;
+        return ssdStorageApacerPanther;
+    }
+
+    public SsdStorageApacerPanther UpdateStorageConnectionSata(int ssdSataConnection)
+    {
+        var ssdStorageApacerPanther = (SsdStorageApacerPanther)Clone();
+        ssdStorageApacerPanther.SsdConnectionSata = ssdSataConnection;
         return ssdStorageApacerPanther;
     }
 

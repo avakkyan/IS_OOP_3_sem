@@ -9,7 +9,7 @@ public class HddStorageWdBlue : IHddStorage, ICloneable
     private const double _hhdWdBluePowerConsumption = 6.8;
     private const int _hhdWdBlueSpindleRotationSpeed = 7200;
     private const string _hhdWdBlueName = "HddStorageWdBlue";
-    private StorageConnectionType _hhdWdBlueConnection = new SataConnection();
+    private int _hhdWdBlueConnection = 4;
 
     public HddStorageWdBlue()
     {
@@ -25,7 +25,7 @@ public class HddStorageWdBlue : IHddStorage, ICloneable
     public int SpindleRotationSpeed { get; private set; }
     public int PowerConsumption { get; private set; }
     public string Name { get; private set; }
-    public StorageConnectionType HddConnection { get; private set; }
+    public int HddConnection { get; private set; }
 
     public HddStorageWdBlue UpdateStorageCapacity(int storageCapacity)
     {
@@ -48,7 +48,7 @@ public class HddStorageWdBlue : IHddStorage, ICloneable
         return hddStorageWdBlue;
     }
 
-    public HddStorageWdBlue UpdateHddConnetion(StorageConnectionType hddConnection)
+    public HddStorageWdBlue UpdateHddConnetion(int hddConnection)
     {
         var hddStorageWdBlue = (HddStorageWdBlue)Clone();
         hddStorageWdBlue.HddConnection = hddConnection;
