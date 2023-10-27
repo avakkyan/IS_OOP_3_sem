@@ -1,4 +1,4 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.ComputerCaseInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.Factory;
 

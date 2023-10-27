@@ -1,5 +1,5 @@
 ﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab2.Storage.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Storage.StorageInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Storage.Entites;
 

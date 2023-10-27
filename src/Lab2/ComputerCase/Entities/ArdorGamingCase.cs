@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.ComputerCaseInterfaces;
 using Itmo.ObjectOrientedProgramming.Lab2.FormFactor.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.Entities;
 
 public class ArdorGamingCase : IComputerCase, ICloneable
 {
-    private const int _ardorGamingHeight = 390;
+    private const int _ardorGamingHeight = 290;
     private const int _ardorGamingWidth = 150;
     private const int _ardorGamingCasePowerConsumption = 0;
     private const string _ardorGamingName = "ArdorGamingCase";
@@ -29,6 +29,18 @@ public class ArdorGamingCase : IComputerCase, ICloneable
     public int PowerConsumption { get; private set; }
     public string Name { get; private set; }
     public IList<MyFormFactor> FormFactorList { get; private set; }
+    public bool CheckFormFactor()
+    {
+        foreach (MyFormFactor myFormFactor in FormFactorList)
+        {
+            if (myFormFactor is MicroAtxFormFactor)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public ArdorGamingCase UpdateCaseHeightForVideoCard(int caseHeightForVideoCard)
     {

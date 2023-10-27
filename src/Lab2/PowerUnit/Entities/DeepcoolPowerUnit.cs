@@ -1,11 +1,11 @@
 ﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.PowerUnitInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Entities;
 
 public class DeepcoolPowerUnit : IDeepcoolPowerUnit, ICloneable
 {
-    private const int _deepcoolpeakLoad = 600;
+    private const int _deepcoolpeakLoad = 100;
     private const int _deepcoolpowerConsumption = 0;
     private const string _deepcoolName = "DeepcoolPowerUnit";
     public DeepcoolPowerUnit()

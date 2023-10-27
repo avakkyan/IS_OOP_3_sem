@@ -1,4 +1,4 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.CPU.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.CPU.CpuInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.CPU.Factory;
 

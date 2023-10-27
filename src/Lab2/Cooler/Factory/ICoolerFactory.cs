@@ -1,4 +1,4 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.Cooler.Intefaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.Cooler.CoolerIntefaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Cooler.Factory;
 

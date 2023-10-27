@@ -1,5 +1,5 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapter.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapter.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapter.WiFiInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapter.Factory;
 

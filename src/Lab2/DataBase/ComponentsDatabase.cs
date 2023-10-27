@@ -1,44 +1,62 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.Cooler.Entties;
-using Itmo.ObjectOrientedProgramming.Lab2.CPU.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.GPU.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.RAM.Entites;
-using Itmo.ObjectOrientedProgramming.Lab2.Storage.Entites;
-using Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapter.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Entities;
+using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.Factory;
+using Itmo.ObjectOrientedProgramming.Lab2.Cooler.Factory;
+using Itmo.ObjectOrientedProgramming.Lab2.CPU.Factory;
+using Itmo.ObjectOrientedProgramming.Lab2.GPU.Factory;
+using Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Factory;
+using Itmo.ObjectOrientedProgramming.Lab2.RAM.Factory;
+using Itmo.ObjectOrientedProgramming.Lab2.Storage.Factory;
+using Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapter.Factory;
+using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Factory;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.DataBase;
 
 public class ComponentsDatabase
 {
     private IList<IComputerDetail> _componentId = new List<IComputerDetail>();
+    private ArdorFactory _ardorFactory = new ArdorFactory();
+    private CougarFactory _cougarFactory = new CougarFactory();
+    private CoolingIdFactory _coolingIdFactory = new CoolingIdFactory();
+    private DeepcoolFactory _deepcoolFactory = new DeepcoolFactory();
+    private CpuFourCoresFactory _cpuFourCoresFactory = new CpuFourCoresFactory();
+    private CpuTwoCoresFactory _cpuTwoCoresFactory = new CpuTwoCoresFactory();
+    private GpuEightMemoryFactory _gpuEightMemoryFactory = new GpuEightMemoryFactory();
+    private GpuTwelveMemoryFactory _gpuTwelveMemoryFactory = new GpuTwelveMemoryFactory();
+    private CougarPowerUnitFactory _cougarPowerUnitFactory = new CougarPowerUnitFactory();
+    private DeepcoolPowerUnitFactory _deepcoolPowerUnitFactory = new DeepcoolPowerUnitFactory();
+    private AdataXmpFactory _adataXmpFactory = new AdataXmpFactory();
+    private KingstonRamFactory _kingstonRamFactory = new KingstonRamFactory();
+    private HddStorageFactory _hddStorageFactory = new HddStorageFactory();
+    private SsdStorageFacroty _ssdStorageFacroty = new SsdStorageFacroty();
+    private DepxFactory _depxFactory = new DepxFactory();
+    private TpLinkArcherFactory _tpLinkArcherFactory = new TpLinkArcherFactory();
+    private AsrockMotherboardFactory _asrockMotherboardFactory = new AsrockMotherboardFactory();
+    private BiostarMotherboardFactory _biostarMotherboardFactory = new BiostarMotherboardFactory();
+    private GigabyteMotherboardFactory _gigabyteMotherboardFactory = new GigabyteMotherboardFactory();
     public ComponentsDatabase()
     {
-        _componentId.Add(new CpuIntelCorei3());
-        _componentId.Add(new CpuIntelCorei5());
-        _componentId.Add(new CpuAmd5Ryzen());
-        _componentId.Add(new CpuAmdAthlon());
-        _componentId.Add(new CoolerDeepcool());
-        _componentId.Add(new CoolerIdCooling());
-        _componentId.Add(new ArdorGamingCase());
-        _componentId.Add(new SapphireAmdGpu());
-        _componentId.Add(new GigabyteGeForceGpu());
-        _componentId.Add(new MsiGeForceGpu());
-        _componentId.Add(new PowerColorAmdGpu());
-        _componentId.Add(new CougarPowerUnit());
-        _componentId.Add(new DeepcoolPowerUnit());
-        _componentId.Add(new AdataRam());
-        _componentId.Add(new KingstonRam());
-        _componentId.Add(new HddStorageWdBlue());
-        _componentId.Add(new SsdStorageApacerPanther());
-        _componentId.Add(new DexpWiFiAdapter());
-        _componentId.Add(new TpLinkArcherWiFiAdapter());
-        _componentId.Add(new AsrockMotherboard());
-        _componentId.Add(new BiostarMotherboard());
-        _componentId.Add(new GigabyteMotherboard());
+        _componentId.Add(_cpuTwoCoresFactory.CreateIntelCpu());
+        _componentId.Add(_cpuFourCoresFactory.CreateIntelCpu());
+        _componentId.Add(_cpuFourCoresFactory.CreateAmdCpu());
+        _componentId.Add(_cpuTwoCoresFactory.CreateAmdCpu());
+        _componentId.Add(_deepcoolFactory.CreateCooler());
+        _componentId.Add(_coolingIdFactory.CreateCooler());
+        _componentId.Add(_ardorFactory.CreateComputerCase());
+        _componentId.Add(_cougarFactory.CreateComputerCase());
+        _componentId.Add(_gigabyteMotherboardFactory.CreateMotherboard());
+        _componentId.Add(_gpuEightMemoryFactory.CreateGeForceGpu());
+        _componentId.Add(_gpuTwelveMemoryFactory.CreateAmdGpu());
+        _componentId.Add(_cougarPowerUnitFactory.CreatePowerUnit());
+        _componentId.Add(_deepcoolPowerUnitFactory.CreatePowerUnit());
+        _componentId.Add(_adataXmpFactory.CreateRam());
+        _componentId.Add(_kingstonRamFactory.CreateRam());
+        _componentId.Add(_hddStorageFactory.CreateStorage());
+        _componentId.Add(_ssdStorageFacroty.CreateStorage());
+        _componentId.Add(_depxFactory.CreateWiFiAdapter());
+        _componentId.Add(_tpLinkArcherFactory.CreateWiFiAdapter());
+        _componentId.Add(_asrockMotherboardFactory.CreateMotherboard());
+        _componentId.Add(_biostarMotherboardFactory.CreateMotherboard());
     }
 
     public IComputerDetail? FindDetail(string detailName)

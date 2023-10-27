@@ -1,8 +1,10 @@
 ﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab2.Bios.BiosInterfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Bios.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.FormFactor.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Socket.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Chipsets;
-using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.MotherboardInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Entities;
 
@@ -16,6 +18,7 @@ public class GigabyteMotherboard : IGigabyteMotherboard, ICloneable
     private const int _gigabytePowerConsumption = 41;
     private const double _gigabytebiosVersionType = 1.14;
     private const string _gigabyteName = "GigabyteMotherboard";
+    private IBios _gigabyteBios = new AmiBios();
     private MySocket _gigabyteSocket = new MySocketAm4();
     private MyChipset _gigabyteChipset = new ChipsetA320();
     private MyFormFactor _gigabyteFormFactor = new MicroAtxFormFactor();
@@ -28,6 +31,7 @@ public class GigabyteMotherboard : IGigabyteMotherboard, ICloneable
         MotherboardChipset = _gigabyteChipset;
         MotherboardDdrStandard = _gigabyteDdrStandart;
         RamTablesAmount = _gigabyteRamTablesAmount;
+        MotherboardBios = _gigabyteBios;
         PowerConsumption = _gigabytePowerConsumption;
         MotherboardFormFactor = _gigabyteFormFactor;
         BiosType = _gigabyteBiosType;
@@ -40,12 +44,27 @@ public class GigabyteMotherboard : IGigabyteMotherboard, ICloneable
     public int SataAmount { get; private set; }
     public MyChipset MotherboardChipset { get; private set; }
     public int MotherboardDdrStandard { get; private set; }
+    public IBios MotherboardBios { get; }
     public int PowerConsumption { get; private set; }
     public string Name { get; private set; }
     public int RamTablesAmount { get; private set; }
     public MyFormFactor MotherboardFormFactor { get; private set; }
     public int BiosType { get; private set; }
     public double BiosVersion { get; private set; }
+    public bool SocketCheck(MySocket mySocket)
+    {
+        return mySocket is MySocketAm4;
+    }
+
+    public bool CheckFormFactor(MyFormFactor myFormFactor)
+    {
+        return myFormFactor is MicroAtxFormFactor;
+    }
+
+    public bool CheckBios(IBios bios)
+    {
+        return bios is AmiBios;
+    }
 
     public GigabyteMotherboard UpdateMotherboardSocket(MySocket motherboardSocket)
     {

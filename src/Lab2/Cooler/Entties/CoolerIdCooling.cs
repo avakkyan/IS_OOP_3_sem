@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Cooler.Intefaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Cooler.CoolerIntefaces;
 using Itmo.ObjectOrientedProgramming.Lab2.Socket.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Cooler.Entties;

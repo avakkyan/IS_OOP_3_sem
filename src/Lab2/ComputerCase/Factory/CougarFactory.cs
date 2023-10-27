@@ -1,5 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.ComputerCaseInterfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.Factory;
 

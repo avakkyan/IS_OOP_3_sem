@@ -1,5 +1,5 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.RAM.Entites;
-using Itmo.ObjectOrientedProgramming.Lab2.RAM.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.RAM.RamInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.RAM.Factory;
 

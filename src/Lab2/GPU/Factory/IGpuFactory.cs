@@ -1,4 +1,4 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.GPU.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.GPU.GpuInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.GPU.Factory;
 

@@ -1,8 +1,10 @@
 ﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab2.Bios.BiosInterfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Bios.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.FormFactor.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Socket.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Chipsets;
-using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.MotherboardInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Entities;
 
@@ -16,6 +18,7 @@ public class BiostarMotherboard : IBiostarMotherboard, ICloneable
     private const int _biostarBiosType = 1;
     private const double _biostarbiosVersionType = 1.14;
     private const string _biostarName = "BiostarMotherboard";
+    private IBios _biosarBios = new AmiBios();
     private MySocket _biostarSocket = new MySocketAm4();
     private MyChipset _biostarChipset = new ChipsetA320();
     private MyFormFactor _biostarFormFactor = new MicroAtxFormFactor();
@@ -27,6 +30,7 @@ public class BiostarMotherboard : IBiostarMotherboard, ICloneable
         SataAmount = _biostarSataAmount;
         PowerConsumption = _biostarPowerConsumption;
         MotherboardChipset = _biostarChipset;
+        MotherboardBios = _biosarBios;
         MotherboardDdrStandard = _biostarDdrStandart;
         RamTablesAmount = _biostarRamTablesAmount;
         MotherboardFormFactor = _biostarFormFactor;
@@ -40,12 +44,27 @@ public class BiostarMotherboard : IBiostarMotherboard, ICloneable
     public int SataAmount { get; private set; }
     public MyChipset MotherboardChipset { get; private set; }
     public int MotherboardDdrStandard { get; private set; }
+    public IBios MotherboardBios { get; }
     public int RamTablesAmount { get; private set; }
     public int PowerConsumption { get; private set; }
     public string Name { get; private set; }
     public MyFormFactor MotherboardFormFactor { get; private set; }
     public int BiosType { get; private set; }
     public double BiosVersion { get; private set; }
+    public bool SocketCheck(MySocket mySocket)
+    {
+        return mySocket is MySocketAm4;
+    }
+
+    public bool CheckFormFactor(MyFormFactor myFormFactor)
+    {
+        return myFormFactor is MicroAtxFormFactor;
+    }
+
+    public bool CheckBios(IBios bios)
+    {
+        return bios is AmiBios;
+    }
 
     public BiostarMotherboard UpdateMotherboardSocket(MySocket motherboardSocket)
     {

@@ -1,11 +1,11 @@
 ﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.PowerUnitInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Entities;
 
 public class CougarPowerUnit : ICougarPowerUnit, ICloneable
 {
-    private const int _cougarPowerUnitpeakLoad = 600;
+    private const int _cougarPowerUnitpeakLoad = 800;
     private const int _cougarPowerUnitPowerConsumtion = 0;
     private const string _cougarPowerUnitName = "CougarPowerUnit";
 

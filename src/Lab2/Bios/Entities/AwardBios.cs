@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Bios.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Bios.BiosInterfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.CPU.CpuInterfaces;
 using Itmo.ObjectOrientedProgramming.Lab2.CPU.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.CPU.Interfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Bios.Entities;
 
@@ -24,6 +24,18 @@ public class AwardBios : IBios, ICloneable
     public int BiosType { get; private set; }
     public double BiosVersion { get; private set; }
     public IList<IMyСpu> CpuList { get; private set; }
+    public bool CheckBios()
+    {
+        foreach (IMyСpu cpu in CpuList)
+        {
+            if (cpu is CpuAmdAthlon || cpu is CpuAmd5Ryzen)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public AwardBios UpdateBiosType(int biosType)
     {

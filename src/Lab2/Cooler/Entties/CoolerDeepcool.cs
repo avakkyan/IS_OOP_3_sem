@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Cooler.Intefaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Cooler.CoolerIntefaces;
 using Itmo.ObjectOrientedProgramming.Lab2.Socket.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Cooler.Entties;
@@ -8,7 +8,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Cooler.Entties;
 public class CoolerDeepcool : IDeepcoolCooler, ICloneable
 {
     private const double _deepcoolDimensions = 1239687.35;
-    private const int _deepcoolTDP = 130;
+    private const int _deepcoolTDP = 10;
     private const string _deepcoolName = "CoolerDeepcool";
     private const int _deepcoolPowerConsumption = 10;
     private IList<MySocket> _socketList = new List<MySocket>();

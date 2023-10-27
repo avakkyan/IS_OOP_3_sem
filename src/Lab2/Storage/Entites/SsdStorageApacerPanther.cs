@@ -1,5 +1,5 @@
 ﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab2.Storage.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Storage.StorageInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Storage.Entites;
 
@@ -8,6 +8,7 @@ public class SsdStorageApacerPanther : ISsdStorage, ICloneable
     private const int _ssdApacerPantherCapacity = 480;
     private const double _ssdApacerPantherPowerConsumption = 6.8;
     private const int _ssdApacerPantherMaximumOperatingSpeed = 241;
+    private const int _ssdConnectionPci = 0;
     private const string _ssdApacerPantherName = "SsdStorageApacerPanther";
     private int? _ssdApacerPantherConnectionSata = 4;
 
@@ -17,6 +18,7 @@ public class SsdStorageApacerPanther : ISsdStorage, ICloneable
         StoragePowerConsumption = _ssdApacerPantherPowerConsumption;
         MaximumOperatingSpeed = _ssdApacerPantherMaximumOperatingSpeed;
         SsdConnectionSata = _ssdApacerPantherConnectionSata;
+        SsdConnectionPci = _ssdConnectionPci;
         Name = _ssdApacerPantherName;
     }
 

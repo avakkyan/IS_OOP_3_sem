@@ -1,14 +1,16 @@
 ﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab2.Bios.BiosInterfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Bios.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.FormFactor.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Socket.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Chipsets;
-using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.MotherboardInterfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Мotherboard.Entities;
 
 public class AsrockMotherboard : IAsrockMotherboard, ICloneable
 {
-    private const int _asrockPciExpressAmount = 1;
+    private const int _asrockPciExpressAmount = 0;
     private const int _asrockSataAmount = 4;
     private const int _asrockDdrStandart = 4;
     private const int _asrockRamTablesAmount = 2;
@@ -16,6 +18,7 @@ public class AsrockMotherboard : IAsrockMotherboard, ICloneable
     private const int _asrockBiosType = 1;
     private const double _asrockbiosVersionType = 1.14;
     private const string _asrockRamName = "AsrockMotherboard";
+    private IBios _asrockBios = new AmiBios();
     private MySocket _asrockSocket = new MySocketAm4();
     private MyChipset _asrockChipset = new ChipsetA320();
     private MyFormFactor _asrockFormFactor = new MicroAtxFormFactor();
@@ -27,6 +30,7 @@ public class AsrockMotherboard : IAsrockMotherboard, ICloneable
         SataAmount = _asrockSataAmount;
         MotherboardChipset = _asrockChipset;
         PowerConsumption = _asrockPowerConsumption;
+        MotherboardBios = _asrockBios;
         MotherboardDdrStandard = _asrockDdrStandart;
         RamTablesAmount = _asrockRamTablesAmount;
         MotherboardFormFactor = _asrockFormFactor;
@@ -40,12 +44,27 @@ public class AsrockMotherboard : IAsrockMotherboard, ICloneable
     public int SataAmount { get; private set; }
     public MyChipset MotherboardChipset { get; private set; }
     public int MotherboardDdrStandard { get; private set; }
+    public IBios MotherboardBios { get; private set; }
     public int RamTablesAmount { get; private set; }
     public MyFormFactor MotherboardFormFactor { get; private set; }
     public int BiosType { get; private set; }
     public int PowerConsumption { get; private set; }
     public string Name { get; private set; }
     public double BiosVersion { get; private set; }
+    public bool SocketCheck(MySocket mySocket)
+    {
+        return mySocket is MySocketAm4;
+    }
+
+    public bool CheckFormFactor(MyFormFactor myFormFactor)
+    {
+        return myFormFactor is MicroAtxFormFactor;
+    }
+
+    public bool CheckBios(IBios bios)
+    {
+        return bios is AmiBios;
+    }
 
     public AsrockMotherboard UpdateMotherboardSocket(MySocket motherboardSocket)
     {

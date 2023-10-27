@@ -1,5 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.Cooler.Entties;
-using Itmo.ObjectOrientedProgramming.Lab2.Cooler.Intefaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.Cooler.CoolerIntefaces;
+using Itmo.ObjectOrientedProgramming.Lab2.Cooler.Entties;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Cooler.Factory;
 

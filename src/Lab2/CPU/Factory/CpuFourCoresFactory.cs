@@ -1,5 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.CPU.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.CPU.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.CPU.CpuInterfaces;
+using Itmo.ObjectOrientedProgramming.Lab2.CPU.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.CPU.Factory;
 
