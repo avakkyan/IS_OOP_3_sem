@@ -4,5 +4,6 @@ public interface IMessage
 {
     string Title { get; }
     string Body { get; }
+    bool IsRead { get; }
     ImportanceLevel MessageImportanceLevel { get; }
 }

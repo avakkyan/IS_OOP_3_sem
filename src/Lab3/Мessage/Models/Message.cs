@@ -12,10 +12,12 @@ public class Message : IMessage
     {
         Title = title;
         Body = body;
+        IsRead = false;
         MessageImportanceLevel = messageImportanceLevel;
     }
 
-    public string Title { get; set; }
+    public string Title { get; private set; }
     public string Body { get; private set; }
+    public bool IsRead { get; }
     public ImportanceLevel MessageImportanceLevel { get; private set; }
 }
