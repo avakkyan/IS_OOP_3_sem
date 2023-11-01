@@ -46,46 +46,170 @@ public class MyBuilder : IMyBuilder
         return this;
     }
 
-    public IMyBuilder WithCooler(ICooler? computerCooler)
+    public (IMyBuilder MyBuilder, Result Result) WithCooler(ICooler? computerCooler)
     {
         _cooler = (ICooler?)computerCooler;
-        return this;
+        if (_cooler?.CoolerTdp is not null && _cpu?.HeatRelease is not null)
+        {
+            if (_cpu.HeatRelease > _cooler.CoolerTdp)
+            {
+                return (this, Result.ProcessorTdpIsBiggerThenCoolerTdp);
+            }
+        }
+
+        return (this, Result.ElementSuccess);
     }
 
-    public IMyBuilder WithCpu(IMyСpu? computerCpu)
+    public (IMyBuilder MyBuilder, Result Result) WithCpu(IMyСpu? computerCpu)
     {
         _cpu = (IMyСpu?)computerCpu;
-        return this;
+        if (_cpu?.CpuSocket is not null &&
+            _motherboard?.MotherboardSocket is not null)
+        {
+            if (!_motherboard.SocketCheck(_cpu.CpuSocket))
+            {
+                return (this, Result.SocketIsNotSuitable);
+            }
+        }
+        else
+        {
+            return (this, Result.ErrorIsComputerAssembly);
+        }
+
+        if (_motherboard?.MotherboardBios?.CpuList is not null && _cpu is not null)
+        {
+            if (!_motherboard.MotherboardBios.CheckBios())
+            {
+                return (this, Result.BiosIsNotSuitable);
+            }
+        }
+        else
+        {
+            return (this, Result.ErrorIsComputerAssembly);
+        }
+
+        return (this, Result.ElementSuccess);
     }
 
-    public IMyBuilder WithGpu(IGpu? computerGpu)
+    public (IMyBuilder MyBuilder, Result Result) WithGpu(IGpu? computerGpu)
     {
         _gpu = (IGpu?)computerGpu;
-        return this;
+        if (_computerCase?.CaseHeightForVideoCard is not null
+            && _gpu?.GpuHeight is not null)
+        {
+            if (_computerCase.CaseHeightForVideoCard < _gpu.GpuHeight)
+            {
+                return (this, Result.CaseLengthIsNotSuitableToViseoCard);
+            }
+        }
+        else
+        {
+            return (this, Result.ErrorIsComputerAssembly);
+        }
+
+        return (this, Result.ElementSuccess);
     }
 
-    public IMyBuilder WithPowerUnit(IPowerUnit? coomputerPowerUnit)
+    public (IMyBuilder MyBuilder, Result Result) WithPowerUnit(IPowerUnit? computerPowerUnit)
     {
-        _powerUnit = (IPowerUnit?)coomputerPowerUnit;
-        return this;
+        _powerUnit = (IPowerUnit?)computerPowerUnit;
+        {
+            if (_motherboard?.PowerConsumption is not null &&
+                _ssdStorage?.PowerConsumption is not null &&
+                _hddStorage?.PowerConsumption is not null &&
+                _cooler?.PowerConsumption is not null &&
+                _cpu?.PowerConsumption is not null &&
+                _ram?.PowerConsumption is not null &&
+                _gpu?.PowerConsumption is not null &&
+                _wiFiAdapter?.PowerConsumption is not null &&
+                _powerUnit?.PowerConsumption is not null)
+            {
+                if (_motherboard?.PowerConsumption +
+                    _ssdStorage?.PowerConsumption +
+                    _hddStorage?.PowerConsumption +
+                    _cooler?.PowerConsumption +
+                    _cpu?.PowerConsumption +
+                    _ram?.PowerConsumption +
+                    _gpu?.PowerConsumption +
+                    _wiFiAdapter?.PowerConsumption +
+                    _powerUnit?.PowerConsumption > _powerUnit?.PeakLoad)
+                {
+                    return (this, Result.PowerCapasicyIsNotEnough);
+                }
+            }
+            else
+            {
+                return (this, Result.ErrorIsComputerAssembly);
+            }
+
+            return (this, Result.ElementSuccess);
+        }
     }
 
-    public IMyBuilder WithRam(IRam? computerRam)
+    public (IMyBuilder MyBuilder, Result Result) WithRam(IRam? computerRam)
     {
         _ram = (IRam?)computerRam;
-        return this;
+        if (_motherboard?.MotherboardDdrStandard is not null &&
+            _ram?.RamDdrStandard is not null)
+        {
+            if (_motherboard.MotherboardDdrStandard != _ram.RamDdrStandard)
+            {
+                return (this, Result.DdrStandardIsNotSuitable);
+            }
+        }
+        else
+        {
+            return (this, Result.ErrorIsComputerAssembly);
+        }
+
+        return (this, Result.ElementSuccess);
     }
 
-    public IMyBuilder WithHdd(IHddStorage? hddStorage)
+    public (IMyBuilder MyBuilder, Result Result) WithHdd(IHddStorage? hddStorage)
     {
         _hddStorage = (IHddStorage?)hddStorage;
-        return this;
+
+        if (_hddStorage?.HddConnection is not null &&
+            _motherboard?.SataAmount is not null)
+        {
+            if (_hddStorage.HddConnection != _motherboard.SataAmount)
+            {
+                return (this, Result.HddIsNotSuitable);
+            }
+        }
+        else
+        {
+            return (this, Result.ErrorIsComputerAssembly);
+        }
+
+        return (this, Result.ElementSuccess);
     }
 
-    public IMyBuilder WithSdd(ISsdStorage? ssdStorage)
+    public (IMyBuilder MyBuilder, Result Result) WithSdd(ISsdStorage? ssdStorage)
     {
         _ssdStorage = (ISsdStorage?)ssdStorage;
-        return this;
+        if (_ssdStorage?.SsdConnectionSata is not null &&
+            _motherboard?.SataAmount is not null)
+        {
+            if (_ssdStorage.SsdConnectionSata != _motherboard.SataAmount)
+            {
+                return (this, Result.SsdIsNotSuitable);
+            }
+        }
+
+        if (_ssdStorage?.SsdConnectionPci is null && _motherboard?.PciExpressAmount is not null)
+        {
+            if (_ssdStorage?.SsdConnectionPci > 0 && _motherboard.PciExpressAmount == 0)
+            {
+                return (this, Result.SsdIsNotSuitable);
+            }
+        }
+        else
+        {
+            return (this, Result.ErrorIsComputerAssembly);
+        }
+
+        return (this, Result.ElementSuccess);
     }
 
     public IMyBuilder WithWiFiAdapter(IWiFiAdapter? computerWiFiAdapter)
@@ -94,9 +218,18 @@ public class MyBuilder : IMyBuilder
         return this;
     }
 
-    public IMyBuilder WithMotherboeard(IMotherboard? computerMotherboard)
+    public (IMyBuilder MyBuilder, Result Result) WithMotherboard(IMotherboard? computerMotherboard)
     {
         _motherboard = (IMotherboard?)computerMotherboard;
-        return this;
+        if (_computerCase?.FormFactorList is not null &&
+            _motherboard?.MotherboardFormFactor is not null)
+        {
+            if (!_computerCase.CheckFormFactor())
+            {
+                return (this, Result.FormFactorMotherboeardIsNotSuitableToCase);
+            }
+        }
+
+        return (this, Result.ElementSuccess);
     }
 }

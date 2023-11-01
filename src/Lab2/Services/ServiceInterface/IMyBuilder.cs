@@ -15,13 +15,13 @@ public interface IMyBuilder
 {
     public MyComputer CreateComputer();
     public IMyBuilder WithCase(IComputerCase? computerCase);
-    public IMyBuilder WithCooler(ICooler? computerCooler);
-    public IMyBuilder WithCpu(IMyСpu? computerCpu);
-    public IMyBuilder WithGpu(IGpu? computerGpu);
-    public IMyBuilder WithPowerUnit(IPowerUnit? coomputerPowerUnit);
-    public IMyBuilder WithRam(IRam? computerRam);
-    public IMyBuilder WithHdd(IHddStorage? hddStorage);
-    public IMyBuilder WithSdd(ISsdStorage? ssdStorage);
+    public (IMyBuilder MyBuilder, Result Result) WithCooler(ICooler? computerCooler);
+    public (IMyBuilder MyBuilder, Result Result) WithCpu(IMyСpu? computerCpu);
+    public (IMyBuilder MyBuilder, Result Result) WithGpu(IGpu? computerGpu);
+    public (IMyBuilder MyBuilder, Result Result) WithPowerUnit(IPowerUnit? computerPowerUnit);
+    public (IMyBuilder MyBuilder, Result Result) WithRam(IRam? computerRam);
+    public (IMyBuilder MyBuilder, Result Result) WithHdd(IHddStorage? hddStorage);
+    public (IMyBuilder MyBuilder, Result Result) WithSdd(ISsdStorage? ssdStorage);
     public IMyBuilder WithWiFiAdapter(IWiFiAdapter? computerWiFiAdapter);
-    public IMyBuilder WithMotherboeard(IMotherboard? computerMotherboard);
+    public (IMyBuilder MyBuilder, Result Result) WithMotherboard(IMotherboard? computerMotherboard);
 }
