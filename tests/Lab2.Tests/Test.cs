@@ -1,5 +1,4 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.Computer;
-using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.ComputerCaseInterfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.ComputerCase.ComputerCaseInterfaces;
 using Itmo.ObjectOrientedProgramming.Lab2.Cooler.CoolerIntefaces;
 using Itmo.ObjectOrientedProgramming.Lab2.CPU.CpuInterfaces;
 using Itmo.ObjectOrientedProgramming.Lab2.GPU.GpuInterfaces;
@@ -25,18 +24,22 @@ public class Test
     {
         { elementSuccess },
     };
+
     public static TheoryData<Result> TestPeakPowerOfUnitPowerIsNotEnoughData => new()
     {
         { powerCapasicyIsNotEnough },
     };
+
     public static TheoryData<Result> TestCoolerTdpIsNotenoughData => new()
     {
         { processorTdpIsBiggerThenCoolerTdp },
     };
+
     public static TheoryData<Result> TestCpuSocketIsNotSuitableToMotherboardData => new()
     {
         { socketIsNotSuitable },
     };
+
     [Theory]
     [MemberData(nameof(TestSuccessfullyAssembledData))]
     public void TestSuccessfullyAssembled(Result elementSuccess)
@@ -53,26 +56,31 @@ public class Test
         string cougarPowerUnit = "CougarPowerUnit";
         string depxWiFi = "DexpWiFiAdapter";
         IMyBuilder computerOneBuilder = new MyBuilder();
-        MyComputer myComputer = computerOneBuilder.WithCase((IComputerCase?)computerRepository.FindMyDetail(ardorCase))
-            .WithCooler((ICooler?)computerRepository.FindMyDetail(coolerIdCooling))
-            .WithGpu((IGpu?)computerRepository.FindMyDetail(msiGeForceGpu))
-            .WithCpu((IMyСpu?)computerRepository.FindMyDetail(amdAthlon))
-            .WithHdd((IHddStorage?)computerRepository.FindMyDetail(hddblue))
-            .WithMotherboeard((IMotherboard?)computerRepository.FindMyDetail(asrockmotherboard))
-            .WithRam((IRam?)computerRepository.FindMyDetail(adataRam))
-            .WithSdd((ISsdStorage?)computerRepository.FindMyDetail(apacerPantherSsd))
-            .WithPowerUnit((IPowerUnit?)computerRepository.FindMyDetail(cougarPowerUnit))
-            .WithWiFiAdapter((IWiFiAdapter?)computerRepository.FindMyDetail(depxWiFi)).CreateComputer();
-        var computerService = new MyComputerService(myComputer);
-        Assert.Equal(elementSuccess, computerService.IsSocketRight());
-        Assert.Equal(elementSuccess, computerService.IsCaseFormFactorRightToMotherboard());
-        Assert.Equal(elementSuccess, computerService.IsCaseLengthRight());
-        Assert.Equal(elementSuccess, computerService.IsBiosRight());
-        Assert.Equal(elementSuccess, computerService.IsDdrStandardRight());
-        Assert.Equal(elementSuccess, computerService.IsTdpCoolerEnough());
-        Assert.Equal(elementSuccess, computerService.IsSsdRight());
-        Assert.Equal(elementSuccess, computerService.IsHddRight());
-        Assert.Equal(elementSuccess, computerService.IsPowerCapacityEnough());
+        Result result;
+        var computerCpu = (IAmdCpu?)computerRepository.FindMyDetail(amdAthlon);
+        var computerCooler = (ICoolingIdCooler?)computerRepository.FindMyDetail(coolerIdCooling);
+        var computerCase = (IComputerCase?)computerRepository.FindMyDetail(ardorCase);
+        var computerGpu = (IGpu?)computerRepository.FindMyDetail(msiGeForceGpu);
+        var computerHdd = (IHddStorage?)computerRepository.FindMyDetail(hddblue);
+        var computerMotherboard = (IMotherboard?)computerRepository.FindMyDetail(asrockmotherboard);
+        var computerRam = (IRam?)computerRepository.FindMyDetail(adataRam);
+        var computerSsd = (ISsdStorage?)computerRepository.FindMyDetail(apacerPantherSsd);
+        var computerPowerUnit = (IPowerUnit?)computerRepository.FindMyDetail(cougarPowerUnit);
+        var computerWiFi = (IWiFiAdapter?)computerRepository.FindMyDetail(depxWiFi);
+        IBuilderDirerctor instanceDirector = new InstanceDirector(
+            computerOneBuilder,
+            computerCpu,
+            computerCase,
+            computerCooler,
+            computerGpu,
+            computerPowerUnit,
+            computerRam,
+            computerHdd,
+            computerSsd,
+            computerWiFi,
+            computerMotherboard);
+        (_, result) = instanceDirector.Direct();
+        Assert.Equal(elementSuccess, result);
     }
 
     [Theory]
@@ -91,26 +99,31 @@ public class Test
         string cougarPowerUnit = "DeepcoolPowerUnit";
         string depxWiFi = "DexpWiFiAdapter";
         IMyBuilder computerOneBuilder = new MyBuilder();
-        MyComputer myComputer = computerOneBuilder.WithCase((IComputerCase?)computerRepository.FindMyDetail(ardorCase))
-            .WithCooler((ICooler?)computerRepository.FindMyDetail(coolerIdCooling))
-            .WithGpu((IGpu?)computerRepository.FindMyDetail(msiGeForceGpu))
-            .WithCpu((IMyСpu?)computerRepository.FindMyDetail(amdAthlon))
-            .WithHdd((IHddStorage?)computerRepository.FindMyDetail(hddblue))
-            .WithMotherboeard((IMotherboard?)computerRepository.FindMyDetail(asrockmotherboard))
-            .WithRam((IRam?)computerRepository.FindMyDetail(adataRam))
-            .WithSdd((ISsdStorage?)computerRepository.FindMyDetail(apacerPantherSsd))
-            .WithPowerUnit((IPowerUnit?)computerRepository.FindMyDetail(cougarPowerUnit))
-            .WithWiFiAdapter((IWiFiAdapter?)computerRepository.FindMyDetail(depxWiFi)).CreateComputer();
-        var computerService = new MyComputerService(myComputer);
-        Assert.Equal(elementSuccess, computerService.IsSocketRight());
-        Assert.Equal(elementSuccess, computerService.IsCaseFormFactorRightToMotherboard());
-        Assert.Equal(elementSuccess, computerService.IsCaseLengthRight());
-        Assert.Equal(elementSuccess, computerService.IsBiosRight());
-        Assert.Equal(elementSuccess, computerService.IsDdrStandardRight());
-        Assert.Equal(elementSuccess, computerService.IsTdpCoolerEnough());
-        Assert.Equal(elementSuccess, computerService.IsSsdRight());
-        Assert.Equal(elementSuccess, computerService.IsHddRight());
-        Assert.Equal(powerCapasicyIsNotEnough, computerService.IsPowerCapacityEnough());
+        Result result;
+        var computerCpu = (IAmdCpu?)computerRepository.FindMyDetail(amdAthlon);
+        var computerCooler = (ICoolingIdCooler?)computerRepository.FindMyDetail(coolerIdCooling);
+        var computerCase = (IComputerCase?)computerRepository.FindMyDetail(ardorCase);
+        var computerGpu = (IGpu?)computerRepository.FindMyDetail(msiGeForceGpu);
+        var computerHdd = (IHddStorage?)computerRepository.FindMyDetail(hddblue);
+        var computerMotherboard = (IMotherboard?)computerRepository.FindMyDetail(asrockmotherboard);
+        var computerRam = (IRam?)computerRepository.FindMyDetail(adataRam);
+        var computerSsd = (ISsdStorage?)computerRepository.FindMyDetail(apacerPantherSsd);
+        var computerPowerUnit = (IPowerUnit?)computerRepository.FindMyDetail(cougarPowerUnit);
+        var computerWiFi = (IWiFiAdapter?)computerRepository.FindMyDetail(depxWiFi);
+        IBuilderDirerctor instanceDirector = new InstanceDirector(
+            computerOneBuilder,
+            computerCpu,
+            computerCase,
+            computerCooler,
+            computerGpu,
+            computerPowerUnit,
+            computerRam,
+            computerHdd,
+            computerSsd,
+            computerWiFi,
+            computerMotherboard);
+        (_, result) = instanceDirector.Direct();
+        Assert.Equal(powerCapasicyIsNotEnough, result);
     }
 
     [Theory]
@@ -119,7 +132,7 @@ public class Test
     {
         var computerRepository = new Repository();
         string amdAthlon = "CpuAmdAthlon";
-        string coolerIdCooling = "CoolerDeepcool";
+        string coolerIsDeepcool = "CoolerDeepcool";
         string ardorCase = "ArdorGamingCase";
         string msiGeForceGpu = "MsiGeForceGpu";
         string hddblue = "HddStorageWdBlue";
@@ -129,26 +142,31 @@ public class Test
         string cougarPowerUnit = "CougarPowerUnit";
         string depxWiFi = "DexpWiFiAdapter";
         IMyBuilder computerOneBuilder = new MyBuilder();
-        MyComputer myComputer = computerOneBuilder.WithCase((IComputerCase?)computerRepository.FindMyDetail(ardorCase))
-            .WithCooler((ICooler?)computerRepository.FindMyDetail(coolerIdCooling))
-            .WithGpu((IGpu?)computerRepository.FindMyDetail(msiGeForceGpu))
-            .WithCpu((IMyСpu?)computerRepository.FindMyDetail(amdAthlon))
-            .WithHdd((IHddStorage?)computerRepository.FindMyDetail(hddblue))
-            .WithMotherboeard((IMotherboard?)computerRepository.FindMyDetail(asrockmotherboard))
-            .WithRam((IRam?)computerRepository.FindMyDetail(adataRam))
-            .WithSdd((ISsdStorage?)computerRepository.FindMyDetail(apacerPantherSsd))
-            .WithPowerUnit((IPowerUnit?)computerRepository.FindMyDetail(cougarPowerUnit))
-            .WithWiFiAdapter((IWiFiAdapter?)computerRepository.FindMyDetail(depxWiFi)).CreateComputer();
-        var computerService = new MyComputerService(myComputer);
-        Assert.Equal(elementSuccess, computerService.IsSocketRight());
-        Assert.Equal(elementSuccess, computerService.IsCaseFormFactorRightToMotherboard());
-        Assert.Equal(elementSuccess, computerService.IsCaseLengthRight());
-        Assert.Equal(elementSuccess, computerService.IsBiosRight());
-        Assert.Equal(elementSuccess, computerService.IsDdrStandardRight());
-        Assert.Equal(processorTdpIsBiggerThenCoolerTdp, computerService.IsTdpCoolerEnough());
-        Assert.Equal(elementSuccess, computerService.IsSsdRight());
-        Assert.Equal(elementSuccess, computerService.IsHddRight());
-        Assert.Equal(elementSuccess, computerService.IsPowerCapacityEnough());
+        Result result;
+        var computerCpu = (IAmdCpu?)computerRepository.FindMyDetail(amdAthlon);
+        var computerCooler = (IDeepcoolCooler?)computerRepository.FindMyDetail(coolerIsDeepcool);
+        var computerCase = (IComputerCase?)computerRepository.FindMyDetail(ardorCase);
+        var computerGpu = (IGpu?)computerRepository.FindMyDetail(msiGeForceGpu);
+        var computerHdd = (IHddStorage?)computerRepository.FindMyDetail(hddblue);
+        var computerMotherboard = (IMotherboard?)computerRepository.FindMyDetail(asrockmotherboard);
+        var computerRam = (IRam?)computerRepository.FindMyDetail(adataRam);
+        var computerSsd = (ISsdStorage?)computerRepository.FindMyDetail(apacerPantherSsd);
+        var computerPowerUnit = (IPowerUnit?)computerRepository.FindMyDetail(cougarPowerUnit);
+        var computerWiFi = (IWiFiAdapter?)computerRepository.FindMyDetail(depxWiFi);
+        IBuilderDirerctor instanceDirector = new InstanceDirector(
+            computerOneBuilder,
+            computerCpu,
+            computerCase,
+            computerCooler,
+            computerGpu,
+            computerPowerUnit,
+            computerRam,
+            computerHdd,
+            computerSsd,
+            computerWiFi,
+            computerMotherboard);
+        (_, result) = instanceDirector.Direct();
+        Assert.Equal(processorTdpIsBiggerThenCoolerTdp, result);
     }
 
     [Theory]
@@ -167,25 +185,30 @@ public class Test
         string cougarPowerUnit = "CougarPowerUnit";
         string depxWiFi = "DexpWiFiAdapter";
         IMyBuilder computerOneBuilder = new MyBuilder();
-        MyComputer myComputer = computerOneBuilder.WithCase((IComputerCase?)computerRepository.FindMyDetail(ardorCase))
-            .WithCooler((ICooler?)computerRepository.FindMyDetail(coolerIdCooling))
-            .WithGpu((IGpu?)computerRepository.FindMyDetail(msiGeForceGpu))
-            .WithCpu((IMyСpu?)computerRepository.FindMyDetail(amdAthlon))
-            .WithHdd((IHddStorage?)computerRepository.FindMyDetail(hddblue))
-            .WithMotherboeard((IMotherboard?)computerRepository.FindMyDetail(asrockmotherboard))
-            .WithRam((IRam?)computerRepository.FindMyDetail(adataRam))
-            .WithSdd((ISsdStorage?)computerRepository.FindMyDetail(apacerPantherSsd))
-            .WithPowerUnit((IPowerUnit?)computerRepository.FindMyDetail(cougarPowerUnit))
-            .WithWiFiAdapter((IWiFiAdapter?)computerRepository.FindMyDetail(depxWiFi)).CreateComputer();
-        var computerService = new MyComputerService(myComputer);
-        Assert.Equal(socketIsNotSuitable, computerService.IsSocketRight());
-        Assert.Equal(elementSuccess, computerService.IsCaseFormFactorRightToMotherboard());
-        Assert.Equal(elementSuccess, computerService.IsCaseLengthRight());
-        Assert.Equal(elementSuccess, computerService.IsBiosRight());
-        Assert.Equal(elementSuccess, computerService.IsDdrStandardRight());
-        Assert.Equal(elementSuccess, computerService.IsTdpCoolerEnough());
-        Assert.Equal(elementSuccess, computerService.IsSsdRight());
-        Assert.Equal(elementSuccess, computerService.IsHddRight());
-        Assert.Equal(elementSuccess, computerService.IsPowerCapacityEnough());
+        Result result;
+        var computerCpu = (IIntelCpu?)computerRepository.FindMyDetail(amdAthlon);
+        var computerCooler = (ICoolingIdCooler?)computerRepository.FindMyDetail(coolerIdCooling);
+        var computerCase = (IComputerCase?)computerRepository.FindMyDetail(ardorCase);
+        var computerGpu = (IGpu?)computerRepository.FindMyDetail(msiGeForceGpu);
+        var computerHdd = (IHddStorage?)computerRepository.FindMyDetail(hddblue);
+        var computerMotherboard = (IMotherboard?)computerRepository.FindMyDetail(asrockmotherboard);
+        var computerRam = (IRam?)computerRepository.FindMyDetail(adataRam);
+        var computerSsd = (ISsdStorage?)computerRepository.FindMyDetail(apacerPantherSsd);
+        var computerPowerUnit = (IPowerUnit?)computerRepository.FindMyDetail(cougarPowerUnit);
+        var computerWiFi = (IWiFiAdapter?)computerRepository.FindMyDetail(depxWiFi);
+        IBuilderDirerctor instanceDirector = new InstanceDirector(
+            computerOneBuilder,
+            computerCpu,
+            computerCase,
+            computerCooler,
+            computerGpu,
+            computerPowerUnit,
+            computerRam,
+            computerHdd,
+            computerSsd,
+            computerWiFi,
+            computerMotherboard);
+        (_, result) = instanceDirector.Direct();
+        Assert.Equal(socketIsNotSuitable, result);
     }
 }

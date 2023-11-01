@@ -14,7 +14,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 public class InstanceDirector : IBuilderDirerctor
 {
     private IMyСpu? _cpu;
-    private IComputerCase _computerCase;
+    private IComputerCase? _computerCase;
     private ICooler? _cooler;
     private IGpu? _gpu;
     private IPowerUnit? _powerUnit;
@@ -26,9 +26,9 @@ public class InstanceDirector : IBuilderDirerctor
     private IMyBuilder _builder;
 
     public InstanceDirector(
-        MyBuilder builder,
+        IMyBuilder builder,
         IMyСpu? cpu,
-        IComputerCase computerCase,
+        IComputerCase? computerCase,
         ICooler? cooler,
         IGpu? gpu,
         IPowerUnit? powerUnit,
@@ -85,12 +85,6 @@ public class InstanceDirector : IBuilderDirerctor
             return (_builder, result);
         }
 
-        (_builder, result) = _builder.WithPowerUnit(_powerUnit);
-        if (result != Result.ElementSuccess)
-        {
-            return (_builder, result);
-        }
-
         (_builder, result) = _builder.WithHdd(_hddStorage);
         if (result != Result.ElementSuccess)
         {
@@ -104,6 +98,12 @@ public class InstanceDirector : IBuilderDirerctor
         }
 
         _builder.WithWiFiAdapter(_wiFiAdapter);
+        (_builder, result) = _builder.WithPowerUnit(_powerUnit);
+        if (result != Result.ElementSuccess)
+        {
+            return (_builder, result);
+        }
+
         return (_builder, result);
     }
 }

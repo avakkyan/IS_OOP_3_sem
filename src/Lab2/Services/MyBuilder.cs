@@ -204,10 +204,6 @@ public class MyBuilder : IMyBuilder
                 return (this, Result.SsdIsNotSuitable);
             }
         }
-        else
-        {
-            return (this, Result.ErrorIsComputerAssembly);
-        }
 
         return (this, Result.ElementSuccess);
     }
