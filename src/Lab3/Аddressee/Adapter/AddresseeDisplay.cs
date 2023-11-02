@@ -1,21 +1,22 @@
 ﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab3.Messanger.Models;
+using Itmo.ObjectOrientedProgramming.Lab3.Display.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Adapter;
 
-public class AddresseeMessanger : IAddressee
+public class AddresseeDisplay : IAddressee
 {
-    private readonly MyMessanger _myMessangerAreesee;
-    public AddresseeMessanger()
+    private readonly IDisplay display;
+
+    public AddresseeDisplay(IDisplay display)
     {
-        _myMessangerAreesee = new MyMessanger();
+        this.display = display;
     }
 
     public void GetMessageAdapting(IMessage message, ConsoleColor consoleColor)
     {
-        _myMessangerAreesee.GetMessage(message);
+        display.ShowMessage(message?.Title, ConsoleColor.Black);
     }
 
     public void LogMessage(IMessage message)

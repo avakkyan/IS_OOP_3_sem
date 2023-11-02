@@ -2,5 +2,5 @@
 
 public interface IMessanger
 {
-    void ShowMessage(string message);
+    void ShowMessage(string? message);
 }
