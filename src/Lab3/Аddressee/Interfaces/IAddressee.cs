@@ -6,5 +6,5 @@ namespace Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Interfaces;
 public interface IAddressee
 {
     void GetMessageAdapting(IMessage message, ConsoleColor consoleColor);
-    void LogMessage(IMessage message);
+    bool FilteringMessages(IMessage message);
 }

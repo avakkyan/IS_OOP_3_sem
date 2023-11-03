@@ -4,7 +4,6 @@ namespace Itmo.ObjectOrientedProgramming.Lab3.User.Interfaces;
 
 public interface IUser
 {
-    string Name { get; }
     void GetMessage(IMessage message);
-    void IsRead(IMessage message);
+    void ReadMessage(IMessage message);
 }

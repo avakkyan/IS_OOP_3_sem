@@ -1,13 +1,21 @@
 ﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab3.DisolayDriver.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab3.Display.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab3.DisplayDriver.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3.DisolayDriver.Models;
+namespace Itmo.ObjectOrientedProgramming.Lab3.DisplayDriver.Models;
 
 public class DisplayDriver : IDisplayDriver
 {
+    private readonly IDisplay _display;
     private string? textWriting = string.Empty;
     private ConsoleColor textColor = ConsoleColor.Black;
+
+    public DisplayDriver(IDisplay display)
+    {
+        _display = display;
+    }
+
     public void SetColor(ConsoleColor color)
     {
         textColor = color;
@@ -16,7 +24,7 @@ public class DisplayDriver : IDisplayDriver
     public void WriteOnDisplay(IMessage message)
     {
         Console.ForegroundColor = textColor;
-        Console.WriteLine(message?.Body);
+        _display.ShowMessage(message?.Body, textColor);
         Console.ResetColor();
     }
 

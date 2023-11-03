@@ -1,23 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Itmo.ObjectOrientedProgramming.Lab3.User.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.User.Models;
 
-public class MyUser
+public class MyUser : IUser
 {
-    private IList<IMessage>? _messages = new List<IMessage>();
+    private IList<IMessage?> _newMessages = new List<IMessage?>();
+    private IList<IMessage> _messagesStory = new List<IMessage>();
 
-    public void IsRead(IMessage message)
+    public void GetMessage(IMessage? message)
     {
-        if (!message.IsRead)
-        {
-            Console.WriteLine("You have a new message");
-        }
+        _newMessages?.Add(message);
     }
 
-    public void GetMessage(IMessage message)
+    public void ReadMessage(IMessage message)
     {
-        _messages?.Add(message);
+        if (_newMessages is not null)
+        {
+            _messagesStory.Add(message);
+            _newMessages.Remove(message);
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Itmo.ObjectOrientedProgramming.Lab3.Services;
 using Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab3.Мessage;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Adapter;
@@ -8,7 +10,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Adapter;
 public class AddresseeGroup : IAddressee
 {
     private IList<IAddressee> addressees = new List<IAddressee>();
-
+    private MyLogger _logger = new MyLogger();
+    private ImportanceLevel _importanceLevel;
     public void AddAddressee(IAddressee addressee)
     {
         addressees.Add(addressee);
@@ -19,16 +22,30 @@ public class AddresseeGroup : IAddressee
         addressees.Remove(addressee);
     }
 
+    public void SetImportanceLevel(ImportanceLevel importanceLevel)
+    {
+        _importanceLevel = importanceLevel;
+    }
+
     public void GetMessageAdapting(IMessage message, ConsoleColor consoleColor)
     {
         foreach (IAddressee addressee in addressees)
         {
-            addressee.GetMessageAdapting(message, consoleColor);
+            if (FilteringMessages(message))
+            {
+                addressee.GetMessageAdapting(message, consoleColor);
+                _logger.LogMessage(message);
+            }
         }
     }
 
-    public void LogMessage(IMessage message)
+    public bool FilteringMessages(IMessage message)
     {
-        Console.WriteLine($"Message : {message?.Title}: {message?.Body} ");
+        if (message?.MessageImportanceLevel == _importanceLevel)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

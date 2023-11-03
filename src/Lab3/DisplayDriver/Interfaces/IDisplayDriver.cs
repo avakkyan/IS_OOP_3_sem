@@ -1,7 +1,7 @@
 ﻿using System;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3.DisolayDriver.Interfaces;
+namespace Itmo.ObjectOrientedProgramming.Lab3.DisplayDriver.Interfaces;
 
 public interface IDisplayDriver
 {
