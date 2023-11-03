@@ -6,13 +6,13 @@ using Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Adapter;
+namespace Itmo.ObjectOrientedProgramming.Lab3.Mocks;
 
-public class AddresseeUser : IAddressee
+public class AddresseeUserMockTestFour : IAddressee
 {
     private ILogger logger;
-    private ImportanceLevel _importanceLevel = ImportanceLevel.None;
-    public AddresseeUser()
+    private ImportanceLevel _importanceLevelmock = ImportanceLevel.NotVeryImportant;
+    public AddresseeUserMockTestFour()
     {
         MyAddresseeUser = new MyUser();
         logger = new MyLogger();
@@ -31,12 +31,12 @@ public class AddresseeUser : IAddressee
 
     public void SetImportanceLevel(ImportanceLevel importanceLevel)
     {
-        _importanceLevel = importanceLevel;
+        _importanceLevelmock = importanceLevel;
     }
 
     public bool FilteringMessages(IMessage message)
     {
-        if (message?.MessageImportanceLevel == _importanceLevel)
+        if (message?.MessageImportanceLevel == _importanceLevelmock)
         {
             return true;
         }

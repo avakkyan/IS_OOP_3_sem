@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Itmo.ObjectOrientedProgramming.Lab3.Result;
 using Itmo.ObjectOrientedProgramming.Lab3.User.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
@@ -14,12 +15,35 @@ public class MyUser : IUser
         _newMessages?.Add(message);
     }
 
-    public void ReadMessage(IMessage message)
+    public MessageResult ReadMessage(IMessage message)
     {
-        if (_newMessages is not null)
+        if (_newMessages is not null && CheckNewContains(message))
         {
             _messagesStory.Add(message);
             _newMessages.Remove(message);
+            return MessageResult.Success;
         }
+
+        return MessageResult.NotSuccess;
+    }
+
+    public bool CheckNewContains(IMessage message)
+    {
+        if (_newMessages.Contains(message))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool CheckStoryContains(IMessage message)
+    {
+        if (_messagesStory.Contains(message))
+        {
+            return true;
+        }
+
+        return false;
     }
 }
