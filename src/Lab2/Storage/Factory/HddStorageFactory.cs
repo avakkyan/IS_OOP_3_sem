@@ -5,8 +5,25 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Storage.Factory;
 
 public class HddStorageFactory : IStorageFatory
 {
-    public IStorage CreateStorage()
+    private int _spindleRotationSpeed;
+    private int _hddConnection;
+
+    public HddStorageFactory(int spindleRotationSpeed, int hddConnection)
     {
-        return new HddStorageWdBlue();
+        _spindleRotationSpeed = spindleRotationSpeed;
+        _hddConnection = hddConnection;
+    }
+
+    public IStorage CreateStorage(
+        int capacity,
+        double powerConsumption,
+        string name)
+    {
+        return new HddStorage(
+             capacity,
+             powerConsumption,
+             _spindleRotationSpeed,
+             name,
+             _hddConnection);
     }
 }

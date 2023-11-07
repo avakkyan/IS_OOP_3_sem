@@ -57,8 +57,8 @@ public class Test
         string depxWiFi = "DexpWiFiAdapter";
         IMyBuilder computerOneBuilder = new MyBuilder();
         Result result;
-        var computerCpu = (IAmdCpu?)computerRepository.FindMyDetail(amdAthlon);
-        var computerCooler = (ICoolingIdCooler?)computerRepository.FindMyDetail(coolerIdCooling);
+        var computerCpu = (IMyСpu?)computerRepository.FindMyDetail(amdAthlon);
+        var computerCooler = (ICooler?)computerRepository.FindMyDetail(coolerIdCooling);
         var computerCase = (IComputerCase?)computerRepository.FindMyDetail(ardorCase);
         var computerGpu = (IGpu?)computerRepository.FindMyDetail(msiGeForceGpu);
         var computerHdd = (IHddStorage?)computerRepository.FindMyDetail(hddblue);
@@ -100,8 +100,8 @@ public class Test
         string depxWiFi = "DexpWiFiAdapter";
         IMyBuilder computerOneBuilder = new MyBuilder();
         Result result;
-        var computerCpu = (IAmdCpu?)computerRepository.FindMyDetail(amdAthlon);
-        var computerCooler = (ICoolingIdCooler?)computerRepository.FindMyDetail(coolerIdCooling);
+        var computerCpu = (IMyСpu?)computerRepository.FindMyDetail(amdAthlon);
+        var computerCooler = (ICooler?)computerRepository.FindMyDetail(coolerIdCooling);
         var computerCase = (IComputerCase?)computerRepository.FindMyDetail(ardorCase);
         var computerGpu = (IGpu?)computerRepository.FindMyDetail(msiGeForceGpu);
         var computerHdd = (IHddStorage?)computerRepository.FindMyDetail(hddblue);
@@ -143,8 +143,8 @@ public class Test
         string depxWiFi = "DexpWiFiAdapter";
         IMyBuilder computerOneBuilder = new MyBuilder();
         Result result;
-        var computerCpu = (IAmdCpu?)computerRepository.FindMyDetail(amdAthlon);
-        var computerCooler = (IDeepcoolCooler?)computerRepository.FindMyDetail(coolerIsDeepcool);
+        var computerCpu = (IMyСpu?)computerRepository.FindMyDetail(amdAthlon);
+        var computerCooler = (ICooler?)computerRepository.FindMyDetail(coolerIsDeepcool);
         var computerCase = (IComputerCase?)computerRepository.FindMyDetail(ardorCase);
         var computerGpu = (IGpu?)computerRepository.FindMyDetail(msiGeForceGpu);
         var computerHdd = (IHddStorage?)computerRepository.FindMyDetail(hddblue);
@@ -186,8 +186,8 @@ public class Test
         string depxWiFi = "DexpWiFiAdapter";
         IMyBuilder computerOneBuilder = new MyBuilder();
         Result result;
-        var computerCpu = (IIntelCpu?)computerRepository.FindMyDetail(amdAthlon);
-        var computerCooler = (ICoolingIdCooler?)computerRepository.FindMyDetail(coolerIdCooling);
+        var computerCpu = (IMyСpu?)computerRepository.FindMyDetail(amdAthlon);
+        var computerCooler = (ICooler?)computerRepository.FindMyDetail(coolerIdCooling);
         var computerCase = (IComputerCase?)computerRepository.FindMyDetail(ardorCase);
         var computerGpu = (IGpu?)computerRepository.FindMyDetail(msiGeForceGpu);
         var computerHdd = (IHddStorage?)computerRepository.FindMyDetail(hddblue);

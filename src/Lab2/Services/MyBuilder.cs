@@ -76,7 +76,7 @@ public class MyBuilder : IMyBuilder
             return (this, Result.ErrorIsComputerAssembly);
         }
 
-        if (_motherboard?.MotherboardBios?.CpuList is not null && _cpu is not null)
+        if (_motherboard?.MotherboardBios?.MyCpuSocket is not null && _cpu is not null)
         {
             if (!_motherboard.MotherboardBios.CheckBios())
             {

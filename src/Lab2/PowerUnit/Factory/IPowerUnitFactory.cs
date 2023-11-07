@@ -4,5 +4,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.PowerUnit.Factory;
 
 public interface IPowerUnitFactory
 {
-    IPowerUnit CreatePowerUnit();
+    IPowerUnit CreatePowerUnit(
+        int peakLoad,
+        int powerConsumption,
+        string name);
 }

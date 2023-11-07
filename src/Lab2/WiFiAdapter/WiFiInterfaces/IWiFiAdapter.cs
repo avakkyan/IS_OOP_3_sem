@@ -7,5 +7,5 @@ public interface IWiFiAdapter : IComputerDetail
 {
     bool IsBluetoothModule { get; }
     double WiFiPciEVersion { get; }
-    TypeWiFiStandard WiFiAdapterStandart { get; }
+    TypeWiFiStandard WiFiAdapterStandard { get; }
 }

@@ -4,5 +4,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.RAM.Factory;
 
 public interface IRamFactory
 {
-    IRam CreateRam();
+    public IRam CreateRam(
+        int powerConsumption,
+        int ramMemory,
+        string name,
+        int dDrStandard);
 }

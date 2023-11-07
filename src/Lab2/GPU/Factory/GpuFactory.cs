@@ -2,7 +2,7 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.GPU.Factory;
 
-public interface IGpuFactory
+public class GpuFactory : IGpuFactory
 {
     public MyGpu CreateGpu(
         double height,
@@ -11,5 +11,15 @@ public interface IGpuFactory
         double pciEVersion,
         int chipFrequency,
         int powerConsumption,
-        string name);
+        string name)
+    {
+        return new MyGpu(
+            height,
+            width,
+            memoryCapcity,
+            pciEVersion,
+            chipFrequency,
+            powerConsumption,
+            name);
+    }
 }
