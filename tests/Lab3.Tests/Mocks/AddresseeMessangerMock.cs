@@ -1,35 +1,35 @@
-﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab3.Display.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab3.Messanger.Models;
 using Itmo.ObjectOrientedProgramming.Lab3.Services;
 using Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Adapter;
+namespace Itmo.ObjectOrientedProgramming.Lab3.Tests.Mocks;
 
-public class AddresseeDisplay : IAddressee
+public class AddresseeMessangerMock : IAddressee
 {
-    private readonly IDisplay display;
+    private readonly MyMessanger _myMessangerAreesee;
     private MyLogger _logger;
     private ImportanceLevel _importanceLevel;
-    public AddresseeDisplay(IDisplay display)
+
+    public AddresseeMessangerMock()
     {
-        this.display = display;
+        _myMessangerAreesee = new MyMessanger();
         _logger = new MyLogger();
+    }
+
+    public void GetMessage(IMessage message)
+    {
+        if (FilteringMessages(message))
+        {
+            _myMessangerAreesee.GetMessage(message);
+            _logger.LogMessage(message);
+        }
     }
 
     public void SetImportanceLevel(ImportanceLevel importanceLevel)
     {
         _importanceLevel = importanceLevel;
-    }
-
-    public void GetMessageAdapting(IMessage message, ConsoleColor consoleColor)
-    {
-        if (FilteringMessages(message))
-        {
-            display.ShowMessage(message?.Title, ConsoleColor.Black);
-            _logger.LogMessage(message);
-        }
     }
 
     public bool FilteringMessages(IMessage message)

@@ -17,7 +17,7 @@ public class MyUser : IUser
 
     public MessageResult ReadMessage(IMessage message)
     {
-        if (_newMessages is not null && CheckNewContains(message))
+        if (CheckNewContains(message))
         {
             _messagesStory.Add(message);
             _newMessages.Remove(message);

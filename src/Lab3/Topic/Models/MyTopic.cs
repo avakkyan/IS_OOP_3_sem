@@ -1,5 +1,4 @@
-﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab3.Topic.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab3.Topic.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
@@ -17,6 +16,6 @@ public class MyTopic : ITopic
     public IAddressee Addresee { get; }
     public void SendMessageFromTopic(IMessage message)
     {
-        Addresee.GetMessageAdapting(message, ConsoleColor.Black);
+        Addresee.GetMessage(message);
     }
 }

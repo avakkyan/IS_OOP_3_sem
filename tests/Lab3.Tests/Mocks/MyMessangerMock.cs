@@ -2,7 +2,7 @@
 using Itmo.ObjectOrientedProgramming.Lab3.Messanger.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3.Mocks;
+namespace Itmo.ObjectOrientedProgramming.Lab3.Tests.Mocks;
 
 public class MyMessangerMock : IMessanger
 {

@@ -1,9 +1,8 @@
-﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab3.Mocks;
-using Itmo.ObjectOrientedProgramming.Lab3.Result;
+﻿using Itmo.ObjectOrientedProgramming.Lab3.Result;
 using Itmo.ObjectOrientedProgramming.Lab3.Services;
+using Itmo.ObjectOrientedProgramming.Lab3.Tests.Mocks;
 using Itmo.ObjectOrientedProgramming.Lab3.User.Interfaces;
-using Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Adapter;
+using Itmo.ObjectOrientedProgramming.Lab3.Аddressee.AdresseesType;
 using Itmo.ObjectOrientedProgramming.Lab3.Аddressee.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Models;
@@ -93,7 +92,7 @@ public class Tests
     {
         string title = "241";
         string body = "time is 241";
-        ImportanceLevel importanceLevel = ImportanceLevel.None;
+        ImportanceLevel importanceLevel = ImportanceLevel.VeryImportant;
         string topicName = "church of 241";
         var myBuilderMessage = new MyBuilderMessage();
         Message message = myBuilderMessage.
@@ -101,22 +100,21 @@ public class Tests
             WithBody(body).
             WithImportanceLevel(importanceLevel).
             CreateMessage();
-        IAddressee userAdressee = new AddresseeUserMockTestFour();
-        var topic = new Topic.Models.MyTopic(topicName, userAdressee);
+        IAddressee userAddressee = new AddresseeUser();
+        IAddressee userMockAdresseeFilter = new AddresseeUserMockTestFour(ImportanceLevel.VeryImportant, userAddressee);
+        var topic = new Topic.Models.MyTopic(topicName, userMockAdresseeFilter);
 
         topic.SendMessageFromTopic(message);
         var adresseeUserMock = (AddresseeUserMockTestFour)topic.Addresee;
-        adresseeUserMock.GetMessageAdapting(message, ConsoleColor.Black);
-        bool expectedResult = false;
 
-        Assert.False(expectedResult);
+        Assert.True(adresseeUserMock.IsRecieved);
     }
 
     [Fact]
     public void TestLoggingMessage()
     {
-        string title = "241";
-        string body = "time is 241";
+        string title = "I am unbreakable";
+        string body = "I am dead inside";
         ImportanceLevel importanceLevel = ImportanceLevel.None;
         string topicName = "church of 241";
         var myBuilderMessage = new MyBuilderMessage();
@@ -125,12 +123,12 @@ public class Tests
             WithBody(body).
             WithImportanceLevel(importanceLevel).
             CreateMessage();
-        IAddressee userAdressee = new AdresseeUserMockTestFive();
-        var topic = new Topic.Models.MyTopic(topicName, userAdressee);
+        IAddressee userAddressee = new AddresseeUser();
+        var logger = new LoggerMock();
+        IAddressee userMockAddressee = new AdresseeUserMockTestFive(userAddressee, logger);
+        var topic = new Topic.Models.MyTopic(topicName, userMockAddressee);
 
         topic.SendMessageFromTopic(message);
-        var adresseeUserMock = (AdresseeUserMockTestFive)topic.Addresee;
-        var logger = (LoggerMock)adresseeUserMock.Logger;
         logger.LogMessage(message);
         string expectedResult = $"Message got addressee with title {message?.Title}";
 
@@ -155,7 +153,7 @@ public class Tests
 
         topic.SendMessageFromTopic(message);
         var addresseeMessangerMock = (AddresseeMessangerMock)topic.Addresee;
-        addresseeMessangerMock.GetMessageAdapting(message, ConsoleColor.Black);
+        addresseeMessangerMock.GetMessage(message);
         var myMessanger = new MyMessangerMock();
         myMessanger.GetMessage(message);
         string expectingResult = $"New message {message.Body}";
