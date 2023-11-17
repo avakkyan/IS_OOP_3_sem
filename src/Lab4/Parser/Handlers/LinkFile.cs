@@ -18,6 +18,7 @@ public class LinkFile : LinkBase
         linkFileMove.AddNext(linkFileCopy);
         linkFileCopy.AddNext(linkFileDelete);
         linkFileDelete.AddNext(linkFileRename);
+        SubNext = linkFileShow;
     }
 
     private ILink? SubNext { get; }

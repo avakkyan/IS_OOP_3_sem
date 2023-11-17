@@ -9,13 +9,7 @@ public class LinkFileRename : LinkBase
 {
     private string? _path = string.Empty;
     private string? _name = string.Empty;
-
-    public LinkFileRename()
-    {
-        Command = new FileRename(_path, _name);
-    }
-
-    private ICommand? Command { get; }
+    public ICommand? Command { get; private set; }
 
     public override ICommand? Handle(MyRequest myRequest)
     {
@@ -26,6 +20,11 @@ public class LinkFileRename : LinkBase
 
         _path = myRequest?.FindElement(2);
         _name = myRequest?.FindElement(3);
+        if (_path != null && _name != null)
+        {
+            Command = new FileRename(_path, _name);
+        }
+
         return Command;
     }
 }

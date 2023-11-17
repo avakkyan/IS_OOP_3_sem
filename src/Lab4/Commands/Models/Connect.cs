@@ -17,6 +17,6 @@ public class Connect : ICommand
 
     public void Execute(ref Address? address)
     {
-        if (CommandValueAddress != null && CommandValueMode != Local) address?.Update(CommandValueAddress);
+        if (CommandValueAddress != null && CommandValueMode == Local) address?.Update(CommandValueAddress);
     }
 }
