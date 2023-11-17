@@ -1,4 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab4.Parser.Interfaces;
+﻿using Itmo.ObjectOrientedProgramming.Lab4.Commands.Interfaces;
+using Itmo.ObjectOrientedProgramming.Lab4.Parser.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab4.Parser.Models;
 using Itmo.ObjectOrientedProgramming.Lab4.Request.Models;
 
@@ -21,15 +22,14 @@ public class LinkFile : LinkBase
 
     private ILink? SubNext { get; }
 
-    public override void Handle(MyRequest myRequest)
+    public override ICommand? Handle(MyRequest myRequest)
     {
         if (myRequest != null && myRequest.FindElement(0) != "file")
         {
-            Next?.Handle(myRequest);
-            return;
+            return Next?.Handle(myRequest);
         }
 
-        if (myRequest != null) SubNext?.Handle(myRequest);
-        return;
+        if (myRequest != null) return SubNext?.Handle(myRequest);
+        return null;
     }
 }

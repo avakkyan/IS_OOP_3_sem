@@ -19,5 +19,5 @@ public abstract class LinkBase : ILink
         }
     }
 
-    public abstract void Handle(MyRequest myRequest);
+    public abstract Commands.Interfaces.ICommand? Handle(MyRequest myRequest);
 }

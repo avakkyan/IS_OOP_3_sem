@@ -1,6 +1,7 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab4.Parser.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab4.Parser.Models;
 using Itmo.ObjectOrientedProgramming.Lab4.Request.Models;
+using ICommand = Itmo.ObjectOrientedProgramming.Lab4.Commands.Interfaces.ICommand;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Parser.Handlers;
 
@@ -16,15 +17,14 @@ public class LinkTree : LinkBase
 
     private ILink? SubNext { get; }
 
-    public override void Handle(MyRequest myRequest)
+    public override ICommand? Handle(MyRequest myRequest)
     {
         if (myRequest != null && myRequest.FindElement(0) != "tree")
         {
-            Next?.Handle(myRequest);
-            return;
+            return Next?.Handle(myRequest);
         }
 
-        if (myRequest != null) SubNext?.Handle(myRequest);
-        return;
+        if (myRequest != null) return SubNext?.Handle(myRequest);
+        return null;
     }
 }

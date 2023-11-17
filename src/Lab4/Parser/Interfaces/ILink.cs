@@ -6,5 +6,5 @@ public interface ILink
 {
     void AddNext(ILink link);
 
-    void Handle(MyRequest myRequest);
+    Commands.Interfaces.ICommand? Handle(MyRequest myRequest);
 }
