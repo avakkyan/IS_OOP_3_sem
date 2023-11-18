@@ -86,6 +86,7 @@ dotnet_diagnostic.SA1500.severity = error
 
 # File scoped namespace declaration
 csharp_style_namespace_declarations = file_scoped:warning
+dotnet_diagnostic.CA1062.severity = none
 
 # Disable XML docs
 dotnet_diagnostic.CS1591.severity = none
