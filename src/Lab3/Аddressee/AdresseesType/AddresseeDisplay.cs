@@ -15,6 +15,6 @@ public class AddresseeDisplay : IAddressee
 
     public void GetMessage(IMessage message)
     {
-        display.ShowMessage(message?.Title, ConsoleColor.Black);
+        display.ShowMessage(message, ConsoleColor.Black);
     }
 }

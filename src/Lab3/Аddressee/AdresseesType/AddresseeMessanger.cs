@@ -8,9 +8,9 @@ public class AddresseeMessanger : IAddressee
 {
     private readonly MyMessanger _myMessangerAreesee;
 
-    public AddresseeMessanger()
+    public AddresseeMessanger(MyMessanger myMessangerAreesee)
     {
-        _myMessangerAreesee = new MyMessanger();
+        _myMessangerAreesee = myMessangerAreesee;
     }
 
     public void GetMessage(IMessage message)

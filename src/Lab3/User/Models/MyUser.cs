@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab3.Result;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Itmo.ObjectOrientedProgramming.Lab3.User.Interfaces;
 using Itmo.ObjectOrientedProgramming.Lab3.Мessage.Interfaces;
 
@@ -7,43 +8,33 @@ namespace Itmo.ObjectOrientedProgramming.Lab3.User.Models;
 
 public class MyUser : IUser
 {
-    private IList<IMessage?> _newMessages = new List<IMessage?>();
-    private IList<IMessage> _messagesStory = new List<IMessage>();
+    private readonly IMessageProxy _messageProxy;
+    private IList<MessageStatus> _messages = new List<MessageStatus>();
 
-    public void GetMessage(IMessage? message)
+    public MyUser(IMessageProxy messageProxy, IList<MessageStatus> messages)
     {
-        _newMessages?.Add(message);
+        _messageProxy = messageProxy;
+        _messages = messages;
     }
 
-    public MessageResult ReadMessage(IMessage message)
+    public void GetMessage(IMessage message)
     {
-        if (CheckNewContains(message))
-        {
-            _messagesStory.Add(message);
-            _newMessages.Remove(message);
-            return MessageResult.Success;
-        }
-
-        return MessageResult.NotSuccess;
+        _messages?.Add(new MessageStatus(message, false));
     }
 
-    public bool CheckNewContains(IMessage message)
+    public void ReadMessage(IMessage message)
     {
-        if (_newMessages.Contains(message))
+        MessageStatus? messageStatus = _messages.FirstOrDefault(targetMessage =>
+            targetMessage.Message.Body is not null &&
+            targetMessage.Message.Body.Equals(message.Body, StringComparison.Ordinal));
+
+        if (messageStatus is not null)
         {
-            return true;
+            MessageStatus? newMessage = _messageProxy.ReadMessage(messageStatus);
+            if (newMessage is not null)
+            {
+                _messages[_messages.IndexOf(messageStatus)] = newMessage;
+            }
         }
-
-        return false;
-    }
-
-    public bool CheckStoryContains(IMessage message)
-    {
-        if (_messagesStory.Contains(message))
-        {
-            return true;
-        }
-
-        return false;
     }
 }

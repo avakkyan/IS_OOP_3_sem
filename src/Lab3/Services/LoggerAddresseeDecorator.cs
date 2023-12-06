@@ -17,7 +17,7 @@ public class LoggerAddresseeDecorator : IAddressee
 
     public void GetMessage(IMessage message)
     {
-        _addreseess.GetMessage(message);
         _logger.LogMessage(message);
+        _addreseess.GetMessage(message);
     }
 }
