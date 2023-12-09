@@ -7,14 +7,14 @@ namespace Itmo.ObjectOrientedProgramming.Lab3.Аddressee.AdresseesType;
 
 public class AddresseeDisplay : IAddressee
 {
-    private readonly IDisplay display;
+    private readonly IDisplay _display;
     public AddresseeDisplay(IDisplay display)
     {
-        this.display = display;
+        _display = display;
     }
 
     public void GetMessage(IMessage message)
     {
-        display.ShowMessage(message, ConsoleColor.Black);
+        _display.ShowMessage(message, ConsoleColor.Black);
     }
 }
