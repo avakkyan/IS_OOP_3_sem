@@ -15,13 +15,13 @@ public class TreeList : ICommand
 
     public string? CommandValueDepth { get; }
 
-    public void Execute(ref Address? address)
+    public void Execute(ref FilePath? filePath)
     {
         try
         {
-            if (address?.Value != null)
+            if (filePath?.Value != null)
             {
-                string docPath = address.Value;
+                string docPath = filePath.Value;
 
                 var dirs = new List<string>(Directory.EnumerateDirectories(docPath));
 

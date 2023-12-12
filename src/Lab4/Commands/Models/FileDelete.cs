@@ -12,11 +12,11 @@ public class FileDelete : ICommand
     }
 
     public string CommandValuePath { get; private set; }
-    public void Execute(ref Address? address)
+    public void Execute(ref FilePath? filePath)
     {
-        if (address?.Value != null)
+        if (filePath?.Value != null)
         {
-            string newpath = Path.Combine(address.Value, CommandValuePath);
+            string newpath = Path.Combine(filePath.Value, CommandValuePath);
             File.Delete(newpath);
         }
     }

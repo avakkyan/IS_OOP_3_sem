@@ -15,12 +15,12 @@ public class FileCopy : ICommand
    public string? SourcePathValue { get; }
    public string? DestinationPathValue { get; }
 
-   public void Execute(ref Address? address)
+   public void Execute(ref FilePath? filePath)
    {
-       if (address?.Value != null && SourcePathValue != null && DestinationPathValue != null)
+       if (filePath?.Value != null && SourcePathValue != null && DestinationPathValue != null)
        {
-           string oldpath = Path.Combine(address.Value, SourcePathValue);
-           string newpath = Path.Combine(address.Value, DestinationPathValue);
+           string oldpath = Path.Combine(filePath.Value, SourcePathValue);
+           string newpath = Path.Combine(filePath.Value, DestinationPathValue);
            File.Copy(oldpath, newpath);
        }
    }

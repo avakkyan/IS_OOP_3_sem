@@ -4,5 +4,5 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Commands.Interfaces;
 
 public interface ICommand
 {
-    void Execute(ref Address? address);
+    void Execute(ref FilePath? filePath);
 }

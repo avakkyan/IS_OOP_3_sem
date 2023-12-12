@@ -16,11 +16,11 @@ public class FileShow : ICommand
     public string? PathValue { get; }
     public string? ModeValue { get; }
 
-    public void Execute(ref Address? address)
+    public void Execute(ref FilePath? filePath)
     {
-        if (address?.Value != null && PathValue != null)
+        if (filePath?.Value != null && PathValue != null)
         {
-             string thePath = Path.Combine(address.Value, PathValue);
+             string thePath = Path.Combine(filePath.Value, PathValue);
              Console.WriteLine($"Information in the file: {thePath} in mode {ModeValue}");
         }
     }

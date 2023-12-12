@@ -15,12 +15,12 @@ public class FileRename : ICommand
     public string? PathValue { get; }
     public string? NameValue { get; }
 
-    public void Execute(ref Address? address)
+    public void Execute(ref FilePath? filePath)
     {
-        if (address?.Value != null && PathValue != null && NameValue != null)
+        if (filePath?.Value != null && PathValue != null && NameValue != null)
         {
-            string oldpath = Path.Combine(address.Value, PathValue);
-            string newpath = Path.Combine(address.Value, NameValue);
+            string oldpath = Path.Combine(filePath.Value, PathValue);
+            string newpath = Path.Combine(filePath.Value, NameValue);
             File.Move(oldpath, newpath);
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab4.AddressObject;
 
-public class Address
+public class FilePath
 {
     public string Value { get; private set; } = string.Empty;
 
