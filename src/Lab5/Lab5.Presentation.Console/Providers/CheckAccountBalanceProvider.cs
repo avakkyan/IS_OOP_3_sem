@@ -8,18 +8,16 @@ public class CheckAccountBalanceProvider : ILowScenarioProvider
 {
     private readonly IUserService _service;
     private readonly ICurrentUserService _currentUser;
-    private int _balance;
 
-    public CheckAccountBalanceProvider(IUserService service, ICurrentUserService currentUser, int balance)
+    public CheckAccountBalanceProvider(IUserService service, ICurrentUserService currentUser)
     {
         _service = service;
         _currentUser = currentUser;
-        _balance = balance;
     }
 
     public bool TryGetScenario([NotNullWhen(true)] out ILowScenario scenario)
     {
-        scenario = new CheckAccountBalanceScenario(_service, _balance);
+        scenario = new CheckAccountBalanceScenario(_service);
         return true;
     }
 }

@@ -40,14 +40,19 @@ public class OperationDetailRepository : IOperationDetailRepository
     public IEnumerable<OperationDetail> GetAllOperation()
     {
         const string sql = """
-        select operation_type, operation_cash_amount
+        select user_account, operation_cash_amount
         from operation_detail
         """;
 
-        using NpgsqlConnection connection = Task
-            .Run(async () =>
-                await _connectionProvider.GetConnectionAsync(default).ConfigureAwait(false)).GetAwaiter()
-            .GetResult();
+        using var connection = new NpgsqlConnection(new NpgsqlConnectionStringBuilder
+        {
+            Host = "localhost",
+            Port = 6432,
+            Username = "postgres",
+            Password = "postgres",
+            SslMode = SslMode.Prefer,
+        }.ConnectionString);
+        connection.Open();
 
         using var command = new NpgsqlCommand(sql, connection);
         using NpgsqlDataReader reader = command.ExecuteReader();
@@ -56,7 +61,7 @@ public class OperationDetailRepository : IOperationDetailRepository
         {
             yield return new OperationDetail(
                 reader.GetInt64(0),
-                reader.GetFieldValue<OperationType>(1));
+                reader.GetDecimal(1));
         }
     }
 }

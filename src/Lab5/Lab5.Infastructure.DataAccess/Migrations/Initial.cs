@@ -20,7 +20,7 @@ public class Initial : SqlMigration
     create table operation_detail
     (
         transaction_number bigint primary key generated always as identity ,
-        user_account bigint  ,
+        user_account bigint not null ,
         operation_cash_amount numeric not null
         
     );

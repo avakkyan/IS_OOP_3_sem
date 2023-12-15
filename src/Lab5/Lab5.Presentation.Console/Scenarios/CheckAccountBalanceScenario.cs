@@ -8,10 +8,9 @@ public class CheckAccountBalanceScenario : ILowScenario
     private readonly IUserService _userService;
     private long? _balance;
 
-    public CheckAccountBalanceScenario(IUserService shopService, int balance)
+    public CheckAccountBalanceScenario(IUserService shopService)
     {
         _userService = shopService;
-        _balance = balance;
     }
 
     public string Name => "Check Account Balance";
