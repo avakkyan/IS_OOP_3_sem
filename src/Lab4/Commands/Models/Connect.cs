@@ -15,7 +15,7 @@ public class Connect : ICommand
     public string? CommandValueMode { get; }
     public string? CommandValueAddress { get; }
 
-    public void Execute(ref FilePath? filePath)
+    public void Execute(FilePath? filePath)
     {
         if (CommandValueAddress != null && CommandValueMode == Local) filePath?.Update(CommandValueAddress);
     }

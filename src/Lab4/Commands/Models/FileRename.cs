@@ -15,7 +15,7 @@ public class FileRename : ICommand
     public string? PathValue { get; }
     public string? NameValue { get; }
 
-    public void Execute(ref FilePath? filePath)
+    public void Execute(FilePath? filePath)
     {
         if (filePath?.Value != null && PathValue != null && NameValue != null)
         {

@@ -15,7 +15,7 @@ public class FileCopy : ICommand
    public string? SourcePathValue { get; }
    public string? DestinationPathValue { get; }
 
-   public void Execute(ref FilePath? filePath)
+   public void Execute(FilePath? filePath)
    {
        if (filePath?.Value != null && SourcePathValue != null && DestinationPathValue != null)
        {

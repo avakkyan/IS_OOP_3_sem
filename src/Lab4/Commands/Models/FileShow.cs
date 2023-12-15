@@ -16,7 +16,7 @@ public class FileShow : ICommand
     public string? PathValue { get; }
     public string? ModeValue { get; }
 
-    public void Execute(ref FilePath? filePath)
+    public void Execute(FilePath? filePath)
     {
         if (filePath?.Value != null && PathValue != null)
         {

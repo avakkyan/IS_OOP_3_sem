@@ -11,7 +11,7 @@ public class Disconnect : ICommand
     }
 
     public string? CommandValueAddress { get; }
-    public void Execute(ref FilePath? filePath)
+    public void Execute(FilePath? filePath)
     {
         if (CommandValueAddress != null) filePath?.Update(CommandValueAddress);
     }

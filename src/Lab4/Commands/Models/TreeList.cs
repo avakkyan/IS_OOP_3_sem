@@ -15,7 +15,7 @@ public class TreeList : ICommand
 
     public string? CommandValueDepth { get; }
 
-    public void Execute(ref FilePath? filePath)
+    public void Execute(FilePath? filePath)
     {
         try
         {

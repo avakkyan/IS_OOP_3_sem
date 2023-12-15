@@ -12,7 +12,7 @@ public class FileDelete : ICommand
     }
 
     public string CommandValuePath { get; private set; }
-    public void Execute(ref FilePath? filePath)
+    public void Execute(FilePath? filePath)
     {
         if (filePath?.Value != null)
         {

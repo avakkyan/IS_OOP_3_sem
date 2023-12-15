@@ -12,7 +12,7 @@ public class TreeGoTo : ICommand
 
     public string? CommandValuePath { get; }
 
-    public void Execute(ref FilePath? filePath)
+    public void Execute(FilePath? filePath)
     {
         if (CommandValuePath != null) filePath?.Update(CommandValuePath);
     }
