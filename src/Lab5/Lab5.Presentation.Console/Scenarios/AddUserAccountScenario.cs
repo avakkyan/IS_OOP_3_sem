@@ -19,15 +19,5 @@ public class AddUserAccountScenario : IScenario
         string name = AnsiConsole.Ask<string>("Enter name");
         string password = AnsiConsole.Ask<string>("Enter password");
         _userService.CreateBankAccount(name, password);
-
-        // var selector = new SelectionPrompt<Shop>()
-        //     .Title("Select shop")
-        //     .AddChoices(shops)
-        //     .UseConverter(x => x.Name);
-
-        // var shop = AnsiConsole.Prompt(selector);
-
-        // AnsiConsole.WriteLine($"You selected {shop.Name}");
-        // AnsiConsole.Ask<string>("");
     }
 }

@@ -18,15 +18,5 @@ public class WithdrawMoneyScenario : ILowScenario
     {
         int amount = AnsiConsole.Ask<int>("How much money would you like to withdraw?");
         _userService.WithdrawMoneyFromAccount(amount);
-
-        // var selector = new SelectionPrompt<Shop>()
-        //     .Title("Select shop")
-        //     .AddChoices(shops)
-        //     .UseConverter(x => x.Name);
-
-        // var shop = AnsiConsole.Prompt(selector);
-
-        // AnsiConsole.WriteLine($"You selected {shop.Name}");
-        // AnsiConsole.Ask<string>("");
     }
 }
